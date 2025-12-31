@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Page
+    x:Class="App2.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:App2"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Grid>
+        <TextBlock Text="Katastr Nemovitosti" FontSize="45" Margin="20" HorizontalAlignment="Center"
+                   VerticalAlignment="Top" />
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button
+                Content="Parcela"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Margin="10"
+                FontSize="30"
+                Click="GoParcela" />
+            <Button
+                Content="List Vlastnictvi"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Margin="20"
+                FontSize="30"
+                Click="GoLv" />
+            <Button
+                Content="Správní Řízení"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Margin="20"
+                FontSize="30"
+                Click="GoSpravniRizeni" />
+            <Button
+                Content="Crud"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Margin="10"
+                FontSize="30"
+                Click="GoCrud" />
+        </StackPanel>
+        <InfoBar x:Name="HealthInfoBar" IsOpen="False" VerticalAlignment="Bottom" Margin="20" />
+    </Grid>
+</Page>
