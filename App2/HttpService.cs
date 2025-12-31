@@ -30,4 +30,19 @@ public static class HttpService
     {
         return await HttpClient.GetAsync(url);
     }
+
+    public static async Task<HttpResponseMessage> DeleteData(string url)
+    {
+        return await HttpClient.DeleteAsync(url);
+    }
+
+    public static async Task<HttpResponseMessage> PutData(string url, HttpContent content)
+    {
+        return await HttpClient.PutAsync(url, content);
+    }
+
+    public static async Task<HttpResponseMessage> PostData(string url, HttpContent content)
+    {
+        return await HttpClient.PostAsync(url, content);
+    }
 }

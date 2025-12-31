@@ -65,6 +65,6 @@ public sealed partial class MainPage : Page
 
     private void GoCrud(object sender, RoutedEventArgs e)
     {
-        Frame.Navigate(typeof(Crud), null, new SuppressNavigationTransitionInfo());
+        Frame.Navigate(typeof(MajitelCrud), null, new SuppressNavigationTransitionInfo());
     }
 }
