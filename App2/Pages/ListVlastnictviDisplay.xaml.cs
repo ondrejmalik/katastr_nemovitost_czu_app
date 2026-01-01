@@ -14,7 +14,7 @@ namespace App2.Pages;
 /// </summary>
 public sealed partial class ListVlastnictviDisplay : Page
 {
-    public VlastnictviData? Data { get; set; }
+    public LVData? Data { get; set; }
 
     public ListVlastnictviDisplay()
     {
@@ -24,7 +24,7 @@ public sealed partial class ListVlastnictviDisplay : Page
     protected override void OnNavigatedTo(NavigationEventArgs e)
     {
         base.OnNavigatedTo(e);
-        if (e.Parameter is VlastnictviData data)
+        if (e.Parameter is LVData data)
         {
             Data = data;
         }

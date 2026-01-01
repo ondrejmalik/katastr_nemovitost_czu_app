@@ -1,32 +1,18 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Net.Http;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Text.Json;
-using System.Diagnostics;
-using System.Threading.Tasks;
+﻿﻿using System.Collections.Generic;
 using App2.Types;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.UI.Xaml.Navigation;
 
-
-using App2.Pages.Crud;
-
 namespace App2.Pages.Crud;
 
-/// <summary>
-/// An empty page that can be used on its own or navigated to within a Frame.
-/// </summary>
-public sealed partial class MajitelCrud : CrudPageBase
+public sealed partial class TypUcastnikaCrud : CrudPageBase
 {
-    private List<MajitelData>? _data;
-    private MajitelData _newMajitel = new();
+    private List<TypUcastnikaData>? _data;
+    private TypUcastnikaData _newItem = new();
 
-    public List<MajitelData>? Data
+    public List<TypUcastnikaData>? Data
     {
         get => _data;
         set
@@ -39,23 +25,22 @@ public sealed partial class MajitelCrud : CrudPageBase
         }
     }
 
-    public MajitelData NewMajitel
+    public TypUcastnikaData NewItem
     {
-        get => _newMajitel;
+        get => _newItem;
         set
         {
-            if (_newMajitel != value)
+            if (_newItem != value)
             {
-                _newMajitel = value;
+                _newItem = value;
                 OnPropertyChanged();
             }
         }
     }
 
-    public MajitelCrud()
+    public TypUcastnikaCrud()
     {
         InitializeComponent();
-        // Initialize MessageInfoBar from XAML
         Loaded += (s, e) => MessageInfoBar = this.FindName("MessageInfoBar") as InfoBar;
     }
 
@@ -67,7 +52,7 @@ public sealed partial class MajitelCrud : CrudPageBase
 
     private async void LoadData()
     {
-        var data = await LoadDataAsync<MajitelData>("/majitel");
+        var data = await LoadDataAsync<TypUcastnikaData>("/typ_ucastnika");
         if (data != null)
         {
             Data = data;
@@ -81,18 +66,18 @@ public sealed partial class MajitelCrud : CrudPageBase
 
     private async void CreateButtonClick(object sender, RoutedEventArgs e)
     {
-        if (await CreateItemAsync("/majitel", NewMajitel))
+        if (await CreateItemAsync("/typ_ucastnika", NewItem))
         {
-            NewMajitel = new MajitelData();
+            NewItem = new TypUcastnikaData();
             LoadData();
         }
     }
 
     private async void UpdateButtonClick(object sender, RoutedEventArgs e)
     {
-        if (sender is Button button && button.Tag is MajitelData majitel)
+        if (sender is Button button && button.Tag is TypUcastnikaData item)
         {
-            if (await UpdateItemAsync("/majitel", majitel))
+            if (await UpdateItemAsync("/typ_ucastnika", item))
             {
                 LoadData();
             }
@@ -101,12 +86,13 @@ public sealed partial class MajitelCrud : CrudPageBase
 
     private async void DeleteButtonClick(object sender, RoutedEventArgs e)
     {
-        if (sender is Button button && button.Tag is MajitelData majitel)
+        if (sender is Button button && button.Tag is TypUcastnikaData item)
         {
-            if (await DeleteItemAsync("/majitel", majitel.Id))
+            if (await DeleteItemAsync("/typ_ucastnika", item.Id))
             {
                 LoadData();
             }
         }
     }
 }
+

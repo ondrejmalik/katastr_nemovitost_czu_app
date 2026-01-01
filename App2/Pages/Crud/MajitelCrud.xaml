@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<Page
-    x:Class="App2.Pages.MajitelCrud"
+<crud:CrudPageBase
+    x:Class="App2.Pages.Crud.MajitelCrud"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:types="using:App2.Types"
+    xmlns:crud="using:App2.Pages.Crud"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
@@ -107,4 +108,4 @@
 
         <InfoBar x:Name="MessageInfoBar" Grid.RowSpan="2" IsOpen="False" VerticalAlignment="Bottom" Margin="20" />
     </Grid>
-</Page>
+</crud:CrudPageBase>

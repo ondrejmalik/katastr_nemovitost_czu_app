@@ -28,7 +28,14 @@
 
                 <StackPanel Grid.Row="1" Width="320" Margin="0,10,0,0">
                     <TextBlock Text="Typ" FontSize="18" />
-                    <TextBox x:Name="TypTextBox" PlaceholderText="V" />
+                    <ComboBox x:Name="TypComboBox" SelectedIndex="0">
+                        <ComboBoxItem Content="V" />
+                        <ComboBoxItem Content="Z" />
+                        <ComboBoxItem Content="PD" />
+                        <ComboBoxItem Content="PGP" />
+                        <ComboBoxItem Content="ZPV" />
+                        <ComboBoxItem Content="ZDŘ" />
+                    </ComboBox>
                 </StackPanel>
 
                 <Grid Grid.Row="2" Margin="0,10,0,0">

@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<crud:CrudPageBase
+    x:Class="App2.Pages.Crud.RizeniOperaceRowCrud"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:types="using:App2.Types"
+    xmlns:crud="using:App2.Pages.Crud"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <ScrollViewer Grid.Row="0">
+            <StackPanel Margin="20">
+                <TextBlock Text="Řízení Operace" FontSize="24" FontWeight="Bold" Margin="0,0,0,20" />
+                <StackPanel Margin="0,0,0,20" BorderBrush="Gray" BorderThickness="1" Padding="10">
+                    <TextBlock Text="Nová Operace Řízení" FontSize="18" FontWeight="Bold" Margin="0,0,0,10" />
+                    <StackPanel Orientation="Horizontal" Spacing="5" Margin="0,0,0,5">
+                        <TextBlock Text="Řízení ID:" FontWeight="SemiBold" VerticalAlignment="Center" Width="120" />
+                        <TextBox Text="{x:Bind NewItem.RizeniId, Mode=TwoWay}" Width="100" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="5" Margin="0,0,0,5">
+                        <TextBlock Text="Typ Operace ID:" FontWeight="SemiBold" VerticalAlignment="Center" Width="120" />
+                        <TextBox Text="{x:Bind NewItem.TypOperaceId, Mode=TwoWay}" Width="100" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="5" Margin="0,0,0,5">
+                        <TextBlock Text="Datum:" FontWeight="SemiBold" VerticalAlignment="Center" Width="120" />
+                        <TextBox Text="{x:Bind NewItem.Datum, Mode=TwoWay}" Width="150" PlaceholderText="YYYY-MM-DD" />
+                    </StackPanel>
+                    <Button Content="Create" Click="CreateButtonClick" Margin="0,10,0,0" />
+                </StackPanel>
+                <ItemsControl ItemsSource="{x:Bind Data, Mode=OneWay}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate x:DataType="types:RizeniOperaceRowData">
+                            <StackPanel Margin="0,0,0,10" BorderBrush="Gray" BorderThickness="1" Padding="10">
+                                <StackPanel Orientation="Horizontal" Spacing="5" Margin="0,0,0,5">
+                                    <TextBlock Text="Řízení ID:" FontWeight="SemiBold" VerticalAlignment="Center" Width="120" />
+                                    <TextBlock Text="{x:Bind RizeniId}" VerticalAlignment="Center" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Spacing="5" Margin="0,0,0,5">
+                                    <TextBlock Text="Typ Operace ID:" FontWeight="SemiBold" VerticalAlignment="Center" Width="120" />
+                                    <TextBlock Text="{x:Bind TypOperaceId}" VerticalAlignment="Center" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Spacing="5" Margin="0,0,0,5">
+                                    <TextBlock Text="Datum:" FontWeight="SemiBold" VerticalAlignment="Center" Width="120" />
+                                    <TextBlock Text="{x:Bind Datum}" VerticalAlignment="Center" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Spacing="10" Margin="0,10,0,0">
+                                    <Button Content="Delete" Click="DeleteButtonClick" Tag="{x:Bind}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </ScrollViewer>
+        <Button Grid.Row="1" Content="Back" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="30" Margin="20" Click="GoBack" />
+        <InfoBar x:Name="MessageInfoBar" Grid.RowSpan="2" IsOpen="False" VerticalAlignment="Bottom" Margin="20" />
+    </Grid>
+</crud:CrudPageBase>
+

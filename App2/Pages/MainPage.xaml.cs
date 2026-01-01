@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using App2.Pages;
+using App2.Pages.Crud;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media.Animation;
@@ -65,6 +66,6 @@ public sealed partial class MainPage : Page
 
     private void GoCrud(object sender, RoutedEventArgs e)
     {
-        Frame.Navigate(typeof(MajitelCrud), null, new SuppressNavigationTransitionInfo());
+        Frame.Navigate(typeof(CrudMenuPage), null, new SuppressNavigationTransitionInfo());
     }
 }

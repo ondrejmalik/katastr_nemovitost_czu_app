@@ -1,32 +1,18 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Net.Http;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Text.Json;
-using System.Diagnostics;
-using System.Threading.Tasks;
+﻿﻿using System.Collections.Generic;
 using App2.Types;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.UI.Xaml.Navigation;
 
-
-using App2.Pages.Crud;
-
 namespace App2.Pages.Crud;
 
-/// <summary>
-/// An empty page that can be used on its own or navigated to within a Frame.
-/// </summary>
-public sealed partial class MajitelCrud : CrudPageBase
+public sealed partial class KrajCrud : CrudPageBase
 {
-    private List<MajitelData>? _data;
-    private MajitelData _newMajitel = new();
+    private List<KrajData>? _data;
+    private KrajData _newItem = new();
 
-    public List<MajitelData>? Data
+    public List<KrajData>? Data
     {
         get => _data;
         set
@@ -39,23 +25,22 @@ public sealed partial class MajitelCrud : CrudPageBase
         }
     }
 
-    public MajitelData NewMajitel
+    public KrajData NewItem
     {
-        get => _newMajitel;
+        get => _newItem;
         set
         {
-            if (_newMajitel != value)
+            if (_newItem != value)
             {
-                _newMajitel = value;
+                _newItem = value;
                 OnPropertyChanged();
             }
         }
     }
 
-    public MajitelCrud()
+    public KrajCrud()
     {
         InitializeComponent();
-        // Initialize MessageInfoBar from XAML
         Loaded += (s, e) => MessageInfoBar = this.FindName("MessageInfoBar") as InfoBar;
     }
 
@@ -67,7 +52,7 @@ public sealed partial class MajitelCrud : CrudPageBase
 
     private async void LoadData()
     {
-        var data = await LoadDataAsync<MajitelData>("/majitel");
+        var data = await LoadDataAsync<KrajData>("/kraj");
         if (data != null)
         {
             Data = data;
@@ -81,18 +66,18 @@ public sealed partial class MajitelCrud : CrudPageBase
 
     private async void CreateButtonClick(object sender, RoutedEventArgs e)
     {
-        if (await CreateItemAsync("/majitel", NewMajitel))
+        if (await CreateItemAsync("/kraj", NewItem))
         {
-            NewMajitel = new MajitelData();
+            NewItem = new KrajData();
             LoadData();
         }
     }
 
     private async void UpdateButtonClick(object sender, RoutedEventArgs e)
     {
-        if (sender is Button button && button.Tag is MajitelData majitel)
+        if (sender is Button button && button.Tag is KrajData item)
         {
-            if (await UpdateItemAsync("/majitel", majitel))
+            if (await UpdateItemAsync("/kraj", item))
             {
                 LoadData();
             }
@@ -101,12 +86,13 @@ public sealed partial class MajitelCrud : CrudPageBase
 
     private async void DeleteButtonClick(object sender, RoutedEventArgs e)
     {
-        if (sender is Button button && button.Tag is MajitelData majitel)
+        if (sender is Button button && button.Tag is KrajData item)
         {
-            if (await DeleteItemAsync("/majitel", majitel.Id))
+            if (await DeleteItemAsync("/kraj", item.Id))
             {
                 LoadData();
             }
         }
     }
 }
+

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="App2.Pages.CrudMenuPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <NavigationView x:Name="MenuContent" PaneDisplayMode="Left" PaneTitle="CRUD Menu" SelectionChanged="MenuContent_SelectionChanged" IsBackEnabled="True" BackRequested="MenuContent_BackRequested">
+        <NavigationView.MenuItems>
+            <NavigationViewItem Content="Majitel" Tag="Majitel" />
+            <NavigationViewItem Content="Kraj" Tag="Kraj" />
+            <NavigationViewItem Content="Okres" Tag="Okres" />
+            <NavigationViewItem Content="Obec" Tag="Obec" />
+            <NavigationViewItem Content="Katastrální Území" Tag="KatastralniUzemi" />
+            <NavigationViewItem Content="BPEJ" Tag="Bpej" />
+            <NavigationViewItem Content="Typ Řízení" Tag="TypRizeni" />
+            <NavigationViewItem Content="Typ Operace" Tag="TypOperace" />
+            <NavigationViewItem Content="Typ Účastníka" Tag="TypUcastnika" />
+            <NavigationViewItem Content="Účastník Řízení" Tag="UcastnikRizeni" />
+            <NavigationViewItem Content="List Vlastnictví" Tag="ListVlastnictvi" />
+            <NavigationViewItem Content="Parcela" Tag="ParcelaRow" />
+            <NavigationViewItem Content="Řízení" Tag="Rizeni" />
+            <NavigationViewItem Content="Vlastnictví" Tag="Vlastnictvi" />
+            <NavigationViewItem Content="Břemeno Parcela-Parcela" Tag="BremenoParcelaParcela" />
+            <NavigationViewItem Content="Břemeno Parcela-Majitel" Tag="BremenoParcelaMajitel" />
+            <NavigationViewItem Content="Řízení Operace" Tag="RizeniOperaceRow" />
+            <NavigationViewItem Content="Plomba" Tag="Plomba" />
+            <NavigationViewItem Content="Účast" Tag="Ucast" />
+        </NavigationView.MenuItems>
+        <NavigationView.FooterMenuItems>
+            <NavigationViewItem Content="Exit Menu" Tag="Exit" Icon="Cancel"/>
+        </NavigationView.FooterMenuItems>
+        <Frame x:Name="ContentFrame" />
+    </NavigationView>
+</Page>
+

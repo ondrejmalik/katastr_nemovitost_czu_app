@@ -22,8 +22,13 @@ public static class HttpService
 
         HttpClient = new HttpClient(handler)
         {
-            BaseAddress = new Uri("http://localhost:3000")
+            BaseAddress = AppSettings.BaseAddress
         };
+    }
+
+    public static void SetBaseAddress(Uri uri)
+    {
+        HttpClient.BaseAddress = uri;
     }
 
     public static async Task<HttpResponseMessage> GetData(string url)

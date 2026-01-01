@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Text.Json;
 using App2.Types;
 using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media.Animation;
 
 // To learn more about WinUI, the WinUI project structure,
@@ -28,7 +29,7 @@ public sealed partial class SpravniRizeniSearch
 
     private void SearchRizeni(object sender, RoutedEventArgs e)
     {
-        var typ = TypTextBox.Text;
+        var typ = (TypComboBox.SelectedItem as ComboBoxItem)?.Content?.ToString();
         var cislo = CisloTextBox.Text;
         var rok = RokTextBox.Text;
         _ = System.Threading.Tasks.Task.Run(async () =>
