@@ -55,8 +55,6 @@ public sealed partial class MajitelCrud : CrudPageBase
     public MajitelCrud()
     {
         InitializeComponent();
-        // Initialize MessageInfoBar from XAML
-        Loaded += (s, e) => MessageInfoBar = this.FindName("MessageInfoBar") as InfoBar;
     }
 
     protected override void OnNavigatedTo(NavigationEventArgs e)

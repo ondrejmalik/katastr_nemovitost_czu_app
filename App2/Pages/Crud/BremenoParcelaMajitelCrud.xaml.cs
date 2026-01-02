@@ -42,7 +42,6 @@ public sealed partial class BremenoParcelaMajitelCrud : CrudPageBase
     public BremenoParcelaMajitelCrud()
     {
         InitializeComponent();
-        Loaded += (s, e) => MessageInfoBar = this.FindName("MessageInfoBar") as InfoBar;
     }
 
     protected override void OnNavigatedTo(NavigationEventArgs e)

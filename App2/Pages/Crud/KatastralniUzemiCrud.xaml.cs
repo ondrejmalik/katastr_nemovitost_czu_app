@@ -41,7 +41,6 @@ public sealed partial class KatastralniUzemiCrud : CrudPageBase
     public KatastralniUzemiCrud()
     {
         InitializeComponent();
-        Loaded += (s, e) => MessageInfoBar = this.FindName("MessageInfoBar") as InfoBar;
     }
 
     protected override void OnNavigatedTo(NavigationEventArgs e)

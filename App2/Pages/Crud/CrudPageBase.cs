@@ -18,6 +18,7 @@ public class CrudPageBase : Page, INotifyPropertyChanged
 {
     public event PropertyChangedEventHandler? PropertyChanged;
     protected InfoBar? MessageInfoBar;
+    public InfoBar? PageInfoBar { get => MessageInfoBar; set => MessageInfoBar = value; }
 
     protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)
     {

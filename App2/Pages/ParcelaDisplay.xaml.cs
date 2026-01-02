@@ -37,7 +37,7 @@ public sealed partial class ParcelaDisplay
     {
         var katastralniUzemi = Data[0].KatastralniUzemi;
         var lv = Data[0].CisloLv;
-        
+
         _ = System.Threading.Tasks.Task.Run(async () =>
         {
             using var client = new System.Net.Http.HttpClient();
@@ -45,7 +45,7 @@ public sealed partial class ParcelaDisplay
             try
             {
                 var response = await client.GetStringAsync(url);
-                var data = JsonSerializer.Deserialize<VlastnictviData>(response);
+                var data = JsonSerializer.Deserialize<LVData>(response);
 
 
                 DispatcherQueue.TryEnqueue(() =>

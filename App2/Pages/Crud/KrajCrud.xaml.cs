@@ -1,4 +1,4 @@
-﻿﻿using System.Collections.Generic;
+﻿﻿﻿using System.Collections.Generic;
 using App2.Types;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -41,7 +41,6 @@ public sealed partial class KrajCrud : CrudPageBase
     public KrajCrud()
     {
         InitializeComponent();
-        Loaded += (s, e) => MessageInfoBar = this.FindName("MessageInfoBar") as InfoBar;
     }
 
     protected override void OnNavigatedTo(NavigationEventArgs e)

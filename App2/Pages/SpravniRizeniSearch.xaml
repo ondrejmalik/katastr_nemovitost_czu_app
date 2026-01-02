@@ -21,7 +21,7 @@
                 </Grid.RowDefinitions>
 
                 <StackPanel Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <TextBlock Text="Parcela" FontSize="45" Margin="20" TextAlignment="Center"
+                    <TextBlock Text="Správní Řízení" FontSize="45" Margin="20" TextAlignment="Center"
                                HorizontalAlignment="Center" />
 
                 </StackPanel>
@@ -46,7 +46,7 @@
 
                     <StackPanel Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Left" Margin="0,0,8,0">
                         <TextBlock Text="číslo řízení" FontSize="18" />
-                        <TextBox x:Name="CisloTextBox" PlaceholderText="1" Width="150"
+                        <TextBox x:Name="CisloTextBox" PlaceholderText="2" Width="150"
                                  Margin="0,0,4,0" />
                     </StackPanel>
 

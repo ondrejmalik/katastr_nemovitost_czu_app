@@ -41,7 +41,6 @@ public sealed partial class BpejCrud : CrudPageBase
     public BpejCrud()
     {
         InitializeComponent();
-        Loaded += (s, e) => MessageInfoBar = this.FindName("MessageInfoBar") as InfoBar;
     }
 
     protected override void OnNavigatedTo(NavigationEventArgs e)

@@ -16,9 +16,6 @@ public sealed partial class ParcelaSearch
 
     private void ParcelaSearch_Loaded(object sender, RoutedEventArgs e)
     {
-        KatastralniUzemiTextBox.Text = "Město Brno";
-        ParcelniCisloTextBox.Text = "1";
-        CastParcelyTextBox.Text = "1";
         StavebniRadioButton.IsChecked = true;
         PozemkovyRadioButton.IsChecked = false;
         Loaded -= ParcelaSearch_Loaded;

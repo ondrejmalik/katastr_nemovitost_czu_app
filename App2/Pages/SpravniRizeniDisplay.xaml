@@ -47,7 +47,7 @@
                                 <StackPanel Orientation="Horizontal" Spacing="10" Margin="0,0,0,4">
                                     <TextBlock Text="Datum:" FontWeight="SemiBold" />
                                     <TextBlock Text="{Binding OperaceDatum}" />
-                                    <TextBlock Text=", Popis:" FontWeight="SemiBold" Margin="10,0,0,0" />
+                                    <TextBlock Text="Popis:" FontWeight="SemiBold" Margin="10,0,0,0" />
                                     <TextBlock Text="{Binding OperacePopis}" TextWrapping="Wrap" />
                                 </StackPanel>
                             </DataTemplate>
@@ -64,7 +64,7 @@
                                 <StackPanel Orientation="Horizontal" Spacing="10" Margin="0,0,0,4">
                                     <TextBlock Text="Typ:" FontWeight="SemiBold" />
                                     <TextBlock Text="{Binding TypUcastnika}" />
-                                    <TextBlock Text=", Jméno:" FontWeight="SemiBold" Margin="10,0,0,0" />
+                                    <TextBlock Text="Jméno:" FontWeight="SemiBold" Margin="10,0,0,0" />
                                     <TextBlock Text="{Binding UcastnikJmeno}" TextWrapping="Wrap" />
                                 </StackPanel>
                             </DataTemplate>

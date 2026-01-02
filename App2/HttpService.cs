@@ -9,7 +9,7 @@ namespace App2;
 /// </summary>
 public static class HttpService
 {
-    private static readonly HttpClient HttpClient;
+    private static HttpClient HttpClient;
 
     static HttpService()
     {
@@ -28,7 +28,16 @@ public static class HttpService
 
     public static void SetBaseAddress(Uri uri)
     {
-        HttpClient.BaseAddress = uri;
+        var handler = new SocketsHttpHandler
+        {
+            UseProxy = false,
+
+            PooledConnectionLifetime = TimeSpan.FromMinutes(5)
+        };
+        HttpClient = new HttpClient(handler)
+        {
+            BaseAddress = AppSettings.BaseAddress
+        };
     }
 
     public static async Task<HttpResponseMessage> GetData(string url)
@@ -36,18 +45,34 @@ public static class HttpService
         return await HttpClient.GetAsync(url);
     }
 
+    private static void AddAuthCookie(HttpRequestMessage request)
+    {
+        if (!string.IsNullOrEmpty(AppSettings.AuthPassword))
+        {
+            request.Headers.Add("Cookie", $"katastr_pw={AppSettings.AuthPassword}");
+        }
+    }
+
     public static async Task<HttpResponseMessage> DeleteData(string url)
     {
-        return await HttpClient.DeleteAsync(url);
+        var request = new HttpRequestMessage(HttpMethod.Delete, url);
+        AddAuthCookie(request);
+        return await HttpClient.SendAsync(request);
     }
 
     public static async Task<HttpResponseMessage> PutData(string url, HttpContent content)
     {
-        return await HttpClient.PutAsync(url, content);
+        var request = new HttpRequestMessage(HttpMethod.Put, url);
+        request.Content = content;
+        AddAuthCookie(request);
+        return await HttpClient.SendAsync(request);
     }
 
     public static async Task<HttpResponseMessage> PostData(string url, HttpContent content)
     {
-        return await HttpClient.PostAsync(url, content);
+        var request = new HttpRequestMessage(HttpMethod.Post, url);
+        request.Content = content;
+        AddAuthCookie(request);
+        return await HttpClient.SendAsync(request);
     }
 }

@@ -1,4 +1,5 @@
-﻿using App2.Pages.Crud;
+﻿using App2;
+using App2.Pages.Crud;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media.Animation;
@@ -6,7 +7,7 @@ using System;
 
 namespace App2.Pages;
 
-public sealed partial class CrudMenuPage : Page
+public sealed partial class CrudMenuPage
 {
     public CrudMenuPage()
     {
@@ -98,7 +99,7 @@ public sealed partial class CrudMenuPage : Page
         {
             var selectedItem = (NavigationViewItem)args.SelectedItem;
             if (selectedItem?.Tag == null) return;
-            string tag = selectedItem.Tag.ToString();
+            string? tag = selectedItem.Tag.ToString();
             Type? pageType = null;
 
             switch (tag)
@@ -122,8 +123,8 @@ public sealed partial class CrudMenuPage : Page
                 case "RizeniOperaceRow": pageType = typeof(RizeniOperaceRowCrud); break;
                 case "Plomba": pageType = typeof(PlombaCrud); break;
                 case "Ucast": pageType = typeof(UcastCrud); break;
-                case "Exit": 
-                    if (Frame.CanGoBack) Frame.GoBack(); 
+                case "Exit":
+                    Frame.Navigate(typeof(MainPage));
                     return;
             }
 
@@ -136,13 +137,6 @@ public sealed partial class CrudMenuPage : Page
 
     private void MenuContent_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
     {
-        if (ContentFrame.CanGoBack)
-        {
-            ContentFrame.GoBack();
-        }
-        else
-        {
-             if (Frame.CanGoBack) Frame.GoBack();
-        }
+        Frame.Navigate(typeof(MainPage));
     }
 }

@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿﻿using System.Collections.Generic;
 using App2;
 using App2.Types;
 using Microsoft.UI.Xaml;
@@ -42,7 +42,6 @@ public sealed partial class BremenoParcelaParcelaCrud : CrudPageBase
     public BremenoParcelaParcelaCrud()
     {
         InitializeComponent();
-        Loaded += (s, e) => MessageInfoBar = this.FindName("MessageInfoBar") as InfoBar;
     }
 
     protected override void OnNavigatedTo(NavigationEventArgs e)

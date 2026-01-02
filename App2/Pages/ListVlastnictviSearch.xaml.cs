@@ -19,16 +19,8 @@ public sealed partial class ListVlastnictviSearch : Page
     public ListVlastnictviSearch()
     {
         InitializeComponent();
-        Loaded += ListVlastnictviSearch_Loaded;
     }
 
-    private void ListVlastnictviSearch_Loaded(object sender, RoutedEventArgs e)
-    {
-        KatastralniUzemiTextBox.Text = "Město Brno";
-        CisloLvTextBox.Text = "1";
-
-        Loaded -= ListVlastnictviSearch_Loaded;
-    }
 
     private void SearchLv(object sender, RoutedEventArgs e)
     {
@@ -44,7 +36,7 @@ public sealed partial class ListVlastnictviSearch : Page
 
 
                 var json = await response.Content.ReadAsStringAsync();
-                var data = JsonSerializer.Deserialize<VlastnictviData>(json);
+                var data = JsonSerializer.Deserialize<LVData>(json);
 
 
                 DispatcherQueue.TryEnqueue(() =>

@@ -41,7 +41,6 @@ public sealed partial class ListVlastnictviCrud : CrudPageBase
     public ListVlastnictviCrud()
     {
         InitializeComponent();
-        Loaded += (s, e) => MessageInfoBar = this.FindName("MessageInfoBar") as InfoBar;
     }
 
     protected override void OnNavigatedTo(NavigationEventArgs e)

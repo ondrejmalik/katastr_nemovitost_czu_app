@@ -4,6 +4,7 @@ using App2.Pages;
 using App2.Pages.Crud;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media.Animation;
 
 
@@ -23,17 +24,18 @@ public sealed partial class MainPage : Page
         Loaded += MainPage_Loaded;
     }
 
-    private async void MainPage_Loaded(object sender, RoutedEventArgs e)
+    private async void CheckHealth()
     {
+        AddressTextBox.Text = AppSettings.Address;
+        PortTextBox.Text = AppSettings.Port.ToString();
         try
         {
+            var sw = System.Diagnostics.Stopwatch.StartNew();
             var response = await HttpService.GetData("/health");
+            sw.Stop();
+
             if (response.IsSuccessStatusCode)
             {
-                var sw = System.Diagnostics.Stopwatch.StartNew();
-                await HttpService.GetData("/health");
-                sw.Stop();
-
                 HealthInfoBar.Severity = InfoBarSeverity.Success;
                 HealthInfoBar.Title = "Health Check";
                 HealthInfoBar.Message = $"Service is healthy. Latency: {sw.ElapsedMilliseconds}ms";
@@ -45,8 +47,12 @@ public sealed partial class MainPage : Page
         }
         catch (Exception)
         {
-            // Silently fail or handle error if needed
         }
+    }
+
+    private async void MainPage_Loaded(object sender, RoutedEventArgs e)
+    {
+        CheckHealth();
     }
 
     private void GoLv(object sender, RoutedEventArgs e)
@@ -67,5 +73,17 @@ public sealed partial class MainPage : Page
     private void GoCrud(object sender, RoutedEventArgs e)
     {
         Frame.Navigate(typeof(CrudMenuPage), null, new SuppressNavigationTransitionInfo());
+    }
+
+    private void AddressTextBoxTextChanged(object sender, TextChangedEventArgs e)
+    {
+        AppSettings.Address = ((TextBox)sender).Text;
+        CheckHealth();
+    }
+
+    private void PortTextBoxTextChanged(object sender, TextChangedEventArgs e)
+    {
+        AppSettings.Port = Convert.ToInt32(((TextBox)sender).Text);
+        CheckHealth();
     }
 }
