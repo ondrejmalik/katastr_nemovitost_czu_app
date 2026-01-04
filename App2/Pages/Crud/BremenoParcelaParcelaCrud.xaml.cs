@@ -1,9 +1,7 @@
-﻿﻿using System.Collections.Generic;
-using App2;
+﻿﻿﻿using System.Collections.Generic;
 using App2.Types;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.UI.Xaml.Navigation;
 
 namespace App2.Pages.Crud;
@@ -52,21 +50,17 @@ public sealed partial class BremenoParcelaParcelaCrud : CrudPageBase
 
     private async void LoadData()
     {
-        var data = await LoadDataAsync<BremenoParcelaParcelaData>("/bremeno_parcela_parcela");
+        var data = await LoadDataAsync<BremenoParcelaParcelaData>("/bremeno_parcela_parcela", AppJsonContext.Default.BremenoParcelaParcelaDataList);
         if (data != null)
         {
             Data = data;
         }
     }
 
-    private void GoBack(object sender, RoutedEventArgs e)
-    {
-        Frame.Navigate(typeof(ParcelaSearch), null, new SuppressNavigationTransitionInfo());
-    }
 
     private async void CreateButtonClick(object sender, RoutedEventArgs e)
     {
-        if (await CreateItemAsync("/bremeno_parcela_parcela", NewItem))
+        if (await CreateItemAsync("/bremeno_parcela_parcela", NewItem, AppJsonContext.Default.BremenoParcelaParcelaData))
         {
             NewItem = new BremenoParcelaParcelaData();
             LoadData();

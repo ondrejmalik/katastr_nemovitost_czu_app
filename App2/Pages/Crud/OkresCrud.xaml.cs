@@ -1,8 +1,7 @@
-﻿﻿﻿using System.Collections.Generic;
+﻿﻿﻿﻿using System.Collections.Generic;
 using App2.Types;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.UI.Xaml.Navigation;
 
 namespace App2.Pages.Crud;
@@ -51,21 +50,17 @@ public sealed partial class OkresCrud : CrudPageBase
 
     private async void LoadData()
     {
-        var data = await LoadDataAsync<OkresData>("/okres");
+        var data = await LoadDataAsync<OkresData>("/okres", AppJsonContext.Default.OkresDataList);
         if (data != null)
         {
             Data = data;
         }
     }
 
-    private void GoBack(object sender, RoutedEventArgs e)
-    {
-        Frame.Navigate(typeof(CrudMenuPage), null, new SuppressNavigationTransitionInfo());
-    }
 
     private async void CreateButtonClick(object sender, RoutedEventArgs e)
     {
-        if (await CreateItemAsync("/okres", NewItem))
+        if (await CreateItemAsync("/okres", NewItem, AppJsonContext.Default.OkresData))
         {
             NewItem = new OkresData();
             LoadData();
@@ -76,7 +71,7 @@ public sealed partial class OkresCrud : CrudPageBase
     {
         if (sender is Button button && button.Tag is OkresData item)
         {
-            if (await UpdateItemAsync("/okres", item))
+            if (await UpdateItemAsync("/okres", item, AppJsonContext.Default.OkresData))
             {
                 LoadData();
             }

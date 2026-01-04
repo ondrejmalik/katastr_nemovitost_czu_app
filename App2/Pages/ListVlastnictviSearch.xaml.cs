@@ -36,7 +36,7 @@ public sealed partial class ListVlastnictviSearch : Page
 
 
                 var json = await response.Content.ReadAsStringAsync();
-                var data = JsonSerializer.Deserialize<LVData>(json);
+                var data = JsonSerializer.Deserialize(json, AppJsonContext.Default.LVData);
 
 
                 DispatcherQueue.TryEnqueue(() =>

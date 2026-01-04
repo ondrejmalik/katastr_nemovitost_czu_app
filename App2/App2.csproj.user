@@ -5,6 +5,10 @@
   </PropertyGroup>
   <PropertyGroup>
     <ActiveDebugProfile>App2 (Package)</ActiveDebugProfile>
+    <_LastSelectedProfileId>C:\Users\Administrator\source\repos\App2\App2\Properties\PublishProfiles\win-x64.pubxml</_LastSelectedProfileId>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>
   </PropertyGroup>
   <ItemGroup>
     <None Update="App.xaml">

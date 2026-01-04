@@ -39,7 +39,7 @@ public sealed partial class ParcelaSearch
                 response.EnsureSuccessStatusCode();
 
                 var json = await response.Content.ReadAsStringAsync();
-                var data = JsonSerializer.Deserialize<System.Collections.Generic.List<ParcelaData>>(json);
+                var data = JsonSerializer.Deserialize(json, AppJsonContext.Default.ParcelaDataList);
 
                 data!.ForEach(parcela => { parcela.KatastralniUzemi = katastralniUzemi; });
 

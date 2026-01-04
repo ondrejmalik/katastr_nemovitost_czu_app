@@ -48,8 +48,7 @@ public sealed partial class ListVlastnictviDisplay : Page
                     response.EnsureSuccessStatusCode();
 
                     var json = await response.Content.ReadAsStringAsync();
-                    var data = JsonSerializer.Deserialize<SpravniRizeniData>(json,
-                        new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                    var data = JsonSerializer.Deserialize(json, AppJsonContext.Default.SpravniRizeniData);
 
                     DispatcherQueue.TryEnqueue(() => { Frame.Navigate(typeof(SpravniRizeniDisplay), data); });
                 }

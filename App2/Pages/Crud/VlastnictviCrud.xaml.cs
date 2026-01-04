@@ -1,4 +1,4 @@
-﻿﻿using System.Collections.Generic;
+﻿﻿﻿using System.Collections.Generic;
 using App2;
 using App2.Types;
 using Microsoft.UI.Xaml;
@@ -52,21 +52,17 @@ public sealed partial class VlastnictviCrud : CrudPageBase
 
     private async void LoadData()
     {
-        var data = await LoadDataAsync<VlastnictviData>("/vlastnictvi");
+        var data = await LoadDataAsync<VlastnictviData>("/vlastnictvi", AppJsonContext.Default.VlastnictviDataList);
         if (data != null)
         {
             Data = data;
         }
     }
 
-    private void GoBack(object sender, RoutedEventArgs e)
-    {
-        Frame.Navigate(typeof(ParcelaSearch), null, new SuppressNavigationTransitionInfo());
-    }
 
     private async void CreateButtonClick(object sender, RoutedEventArgs e)
     {
-        if (await CreateItemAsync("/vlastnictvi", NewItem))
+        if (await CreateItemAsync("/vlastnictvi", NewItem, AppJsonContext.Default.VlastnictviData))
         {
             NewItem = new VlastnictviData();
             LoadData();

@@ -15,104 +15,139 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <ScrollViewer Grid.Row="0">
-            <StackPanel Margin="20">
-                <TextBlock Text="Parcela" FontSize="24" FontWeight="Bold" Margin="0,0,0,20" />
-                <StackPanel Margin="0,0,0,20" BorderBrush="Gray" BorderThickness="1" Padding="10">
-                    <TextBlock Text="Nová Parcela" FontSize="18" FontWeight="Bold" Margin="0,0,0,10" />
-                    <StackPanel Orientation="Horizontal" Spacing="5" Margin="0,0,0,5">
-                        <TextBlock Text="Parcelní číslo:" FontWeight="SemiBold" VerticalAlignment="Center" Width="100" />
-                        <TextBox Text="{x:Bind NewItem.ParcelniCislo, Mode=TwoWay}" Width="100" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="5" Margin="0,0,0,5">
-                        <TextBlock Text="Část parcely:" FontWeight="SemiBold" VerticalAlignment="Center" Width="100" />
-                        <TextBox Text="{x:Bind NewItem.CastParcely, Mode=TwoWay}" Width="100" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="5" Margin="0,0,0,5">
-                        <TextBlock Text="Je stavební:" FontWeight="SemiBold" VerticalAlignment="Center" Width="100" />
-                        <CheckBox IsChecked="{x:Bind NewItem.JeStavebni, Mode=TwoWay}" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="5" Margin="0,0,0,5">
-                        <TextBlock Text="Výměra (m2):" FontWeight="SemiBold" VerticalAlignment="Center" Width="100" />
-                        <TextBox Text="{x:Bind NewItem.VymeraMetruCtverecnich, Mode=TwoWay}" Width="100" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="5" Margin="0,0,0,5">
-                        <TextBlock Text="Ulice:" FontWeight="SemiBold" VerticalAlignment="Center" Width="100" />
-                        <TextBox Text="{x:Bind NewItem.Ulice, Mode=TwoWay}" Width="200" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="5" Margin="0,0,0,5">
-                        <TextBlock Text="Číslo popisné:" FontWeight="SemiBold" VerticalAlignment="Center" Width="100" />
-                        <TextBox Text="{x:Bind NewItem.CisloPopisne, Mode=TwoWay}" Width="100" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="5" Margin="0,0,0,5">
-                        <TextBlock Text="KU ID:" FontWeight="SemiBold" VerticalAlignment="Center" Width="100" />
-                        <TextBox Text="{x:Bind NewItem.KatastralniUzemiId, Mode=TwoWay}" Width="100" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="5" Margin="0,0,0,5">
-                        <TextBlock Text="BPEJ ID:" FontWeight="SemiBold" VerticalAlignment="Center" Width="100" />
-                        <TextBox Text="{x:Bind NewItem.BpejId, Mode=TwoWay}" Width="100" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="5" Margin="0,0,0,5">
-                        <TextBlock Text="LV ID:" FontWeight="SemiBold" VerticalAlignment="Center" Width="100" />
-                        <TextBox Text="{x:Bind NewItem.ListVlastnictviId, Mode=TwoWay}" Width="100" />
-                    </StackPanel>
-                    <Button Content="Create" Click="CreateButtonClick" Margin="0,10,0,0" />
+            <StackPanel Margin="24" Spacing="24">
+                <TextBlock Text="Parcela" Style="{ThemeResource TitleTextBlockStyle}" />
+                
+                <!-- New Item -->
+                <StackPanel Spacing="12">
+                    <TextBlock Text="Nová Parcela" Style="{ThemeResource SubtitleTextBlockStyle}" />
+                    <Border CornerRadius="8" BorderThickness="1" 
+                            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" 
+                            Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
+                            Padding="16">
+                        <Grid ColumnSpacing="12" RowSpacing="12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            
+                            <TextBlock Text="Parcelní číslo:" Style="{ThemeResource BodyStrongTextBlockStyle}" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0"/>
+                            <TextBox Text="{x:Bind NewItem.ParcelniCislo, Mode=TwoWay}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch"/>
+                            
+                            <TextBlock Text="Část parcely:" Style="{ThemeResource BodyStrongTextBlockStyle}" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0"/>
+                            <TextBox Text="{x:Bind NewItem.CastParcely, Mode=TwoWay}" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch"/>
+                            
+                            <TextBlock Text="Je stavební:" Style="{ThemeResource BodyStrongTextBlockStyle}" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0"/>
+                            <CheckBox IsChecked="{x:Bind NewItem.JeStavebni, Mode=TwoWay}" Grid.Row="2" Grid.Column="1"/>
+                            
+                            <TextBlock Text="Výměra (m2):" Style="{ThemeResource BodyStrongTextBlockStyle}" VerticalAlignment="Center" Grid.Row="3" Grid.Column="0"/>
+                            <TextBox Text="{x:Bind NewItem.VymeraMetruCtverecnich, Mode=TwoWay}" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Stretch"/>
+                            
+                            <TextBlock Text="Ulice:" Style="{ThemeResource BodyStrongTextBlockStyle}" VerticalAlignment="Center" Grid.Row="4" Grid.Column="0"/>
+                            <TextBox Text="{x:Bind NewItem.Ulice, Mode=TwoWay}" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Stretch"/>
+                            
+                            <TextBlock Text="Číslo popisné:" Style="{ThemeResource BodyStrongTextBlockStyle}" VerticalAlignment="Center" Grid.Row="5" Grid.Column="0"/>
+                            <TextBox Text="{x:Bind NewItem.CisloPopisne, Mode=TwoWay}" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Stretch"/>
+                            
+                            <TextBlock Text="KU ID:" Style="{ThemeResource BodyStrongTextBlockStyle}" VerticalAlignment="Center" Grid.Row="6" Grid.Column="0"/>
+                            <TextBox Text="{x:Bind NewItem.KatastralniUzemiId, Mode=TwoWay}" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Stretch"/>
+                            
+                            <TextBlock Text="BPEJ ID:" Style="{ThemeResource BodyStrongTextBlockStyle}" VerticalAlignment="Center" Grid.Row="7" Grid.Column="0"/>
+                            <TextBox Text="{x:Bind NewItem.BpejId, Mode=TwoWay}" Grid.Row="7" Grid.Column="1" HorizontalAlignment="Stretch"/>
+                            
+                            <TextBlock Text="LV ID:" Style="{ThemeResource BodyStrongTextBlockStyle}" VerticalAlignment="Center" Grid.Row="8" Grid.Column="0"/>
+                            <TextBox Text="{x:Bind NewItem.ListVlastnictviId, Mode=TwoWay}" Grid.Row="8" Grid.Column="1" HorizontalAlignment="Stretch"/>
+                            
+                            <Button Content="Create" Click="CreateButtonClick" Style="{ThemeResource AccentButtonStyle}" Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right"/>
+                        </Grid>
+                    </Border>
                 </StackPanel>
-                <ItemsControl ItemsSource="{x:Bind Data, Mode=OneWay}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate x:DataType="types:ParcelaRowData">
-                            <StackPanel Margin="0,0,0,10" BorderBrush="Gray" BorderThickness="1" Padding="10">
-                                <StackPanel Orientation="Horizontal" Spacing="5" Margin="0,0,0,5">
-                                    <TextBlock Text="ID:" FontWeight="SemiBold" VerticalAlignment="Center" Width="100" />
-                                    <TextBlock Text="{x:Bind Id}" VerticalAlignment="Center" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Spacing="5" Margin="0,0,0,5">
-                                    <TextBlock Text="Parcelní číslo:" FontWeight="SemiBold" VerticalAlignment="Center" Width="100" />
-                                    <TextBox Text="{x:Bind ParcelniCislo, Mode=TwoWay}" Width="100" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Spacing="5" Margin="0,0,0,5">
-                                    <TextBlock Text="Část parcely:" FontWeight="SemiBold" VerticalAlignment="Center" Width="100" />
-                                    <TextBox Text="{x:Bind CastParcely, Mode=TwoWay}" Width="100" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Spacing="5" Margin="0,0,0,5">
-                                    <TextBlock Text="Je stavební:" FontWeight="SemiBold" VerticalAlignment="Center" Width="100" />
-                                    <CheckBox IsChecked="{x:Bind JeStavebni, Mode=TwoWay}" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Spacing="5" Margin="0,0,0,5">
-                                    <TextBlock Text="Výměra (m2):" FontWeight="SemiBold" VerticalAlignment="Center" Width="100" />
-                                    <TextBox Text="{x:Bind VymeraMetruCtverecnich, Mode=TwoWay}" Width="100" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Spacing="5" Margin="0,0,0,5">
-                                    <TextBlock Text="Ulice:" FontWeight="SemiBold" VerticalAlignment="Center" Width="100" />
-                                    <TextBox Text="{x:Bind Ulice, Mode=TwoWay}" Width="200" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Spacing="5" Margin="0,0,0,5">
-                                    <TextBlock Text="Číslo popisné:" FontWeight="SemiBold" VerticalAlignment="Center" Width="100" />
-                                    <TextBox Text="{x:Bind CisloPopisne, Mode=TwoWay}" Width="100" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Spacing="5" Margin="0,0,0,5">
-                                    <TextBlock Text="KU ID:" FontWeight="SemiBold" VerticalAlignment="Center" Width="100" />
-                                    <TextBox Text="{x:Bind KatastralniUzemiId, Mode=TwoWay}" Width="100" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Spacing="5" Margin="0,0,0,5">
-                                    <TextBlock Text="BPEJ ID:" FontWeight="SemiBold" VerticalAlignment="Center" Width="100" />
-                                    <TextBox Text="{x:Bind BpejId, Mode=TwoWay}" Width="100" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Spacing="5" Margin="0,0,0,5">
-                                    <TextBlock Text="LV ID:" FontWeight="SemiBold" VerticalAlignment="Center" Width="100" />
-                                    <TextBox Text="{x:Bind ListVlastnictviId, Mode=TwoWay}" Width="100" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Spacing="10" Margin="0,10,0,0">
-                                    <Button Content="Update" Click="UpdateButtonClick" Tag="{x:Bind}" />
-                                    <Button Content="Delete" Click="DeleteButtonClick" Tag="{x:Bind}" />
-                                </StackPanel>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                
+                <!-- List -->
+                <StackPanel Spacing="12">
+                    <TextBlock Text="Seznam parcel" Style="{ThemeResource SubtitleTextBlockStyle}" />
+                    <ItemsControl ItemsSource="{x:Bind Data, Mode=OneWay}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate x:DataType="types:ParcelaRowData">
+                                <Border CornerRadius="8" BorderThickness="1" 
+                                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" 
+                                        Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
+                                        Padding="16" Margin="0,0,0,12">
+                                    <Grid ColumnSpacing="12" RowSpacing="12">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <TextBlock Text="ID:" Style="{ThemeResource BodyStrongTextBlockStyle}" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0"/>
+                                        <TextBlock Text="{x:Bind Id}" Style="{ThemeResource BodyTextBlockStyle}" VerticalAlignment="Center" Grid.Row="0" Grid.Column="1"/>
+
+                                        <TextBlock Text="Parcelní číslo:" Style="{ThemeResource BodyStrongTextBlockStyle}" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0"/>
+                                        <TextBox Text="{x:Bind ParcelniCislo, Mode=TwoWay}" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch"/>
+                                        
+                                        <TextBlock Text="Část parcely:" Style="{ThemeResource BodyStrongTextBlockStyle}" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0"/>
+                                        <TextBox Text="{x:Bind CastParcely, Mode=TwoWay}" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch"/>
+                                        
+                                        <TextBlock Text="Je stavební:" Style="{ThemeResource BodyStrongTextBlockStyle}" VerticalAlignment="Center" Grid.Row="3" Grid.Column="0"/>
+                                        <CheckBox IsChecked="{x:Bind JeStavebni, Mode=TwoWay}" Grid.Row="3" Grid.Column="1"/>
+                                        
+                                        <TextBlock Text="Výměra (m2):" Style="{ThemeResource BodyStrongTextBlockStyle}" VerticalAlignment="Center" Grid.Row="4" Grid.Column="0"/>
+                                        <TextBox Text="{x:Bind VymeraMetruCtverecnich, Mode=TwoWay}" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Stretch"/>
+                                        
+                                        <TextBlock Text="Ulice:" Style="{ThemeResource BodyStrongTextBlockStyle}" VerticalAlignment="Center" Grid.Row="5" Grid.Column="0"/>
+                                        <TextBox Text="{x:Bind Ulice, Mode=TwoWay}" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Stretch"/>
+                                        
+                                        <TextBlock Text="Číslo popisné:" Style="{ThemeResource BodyStrongTextBlockStyle}" VerticalAlignment="Center" Grid.Row="6" Grid.Column="0"/>
+                                        <TextBox Text="{x:Bind CisloPopisne, Mode=TwoWay}" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Stretch"/>
+                                        
+                                        <TextBlock Text="KU ID:" Style="{ThemeResource BodyStrongTextBlockStyle}" VerticalAlignment="Center" Grid.Row="7" Grid.Column="0"/>
+                                        <TextBox Text="{x:Bind KatastralniUzemiId, Mode=TwoWay}" Grid.Row="7" Grid.Column="1" HorizontalAlignment="Stretch"/>
+                                        
+                                        <TextBlock Text="BPEJ ID:" Style="{ThemeResource BodyStrongTextBlockStyle}" VerticalAlignment="Center" Grid.Row="8" Grid.Column="0"/>
+                                        <TextBox Text="{x:Bind BpejId, Mode=TwoWay}" Grid.Row="8" Grid.Column="1" HorizontalAlignment="Stretch"/>
+                                        
+                                        <TextBlock Text="LV ID:" Style="{ThemeResource BodyStrongTextBlockStyle}" VerticalAlignment="Center" Grid.Row="9" Grid.Column="0"/>
+                                        <TextBox Text="{x:Bind ListVlastnictviId, Mode=TwoWay}" Grid.Row="9" Grid.Column="1" HorizontalAlignment="Stretch"/>
+
+                                        <StackPanel Orientation="Horizontal" Spacing="8" Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right">
+                                            <Button Content="Update" Click="UpdateButtonClick" Tag="{x:Bind}" Style="{ThemeResource AccentButtonStyle}"/>
+                                            <Button Content="Delete" Click="DeleteButtonClick" Tag="{x:Bind}"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
             </StackPanel>
         </ScrollViewer>
-        <Button Grid.Row="1" Content="Back" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="30" Margin="20" Click="GoBack" />
-        <InfoBar x:Name="MessageInfoBar" Grid.RowSpan="2" IsOpen="False" VerticalAlignment="Bottom" Margin="20" />
+
+        <InfoBar x:Name="MessageInfoBar" Grid.Row="0" Grid.RowSpan="2" IsOpen="False" VerticalAlignment="Bottom" Margin="24" />
     </Grid>
 </crud:CrudPageBase>
 

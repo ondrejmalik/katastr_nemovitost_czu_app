@@ -1,9 +1,7 @@
-﻿﻿using System.Collections.Generic;
-using App2;
+﻿﻿﻿using System.Collections.Generic;
 using App2.Types;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.UI.Xaml.Navigation;
 
 namespace App2.Pages.Crud;
@@ -52,21 +50,17 @@ public sealed partial class PlombaCrud : CrudPageBase
 
     private async void LoadData()
     {
-        var data = await LoadDataAsync<PlombaData>("/plomba");
+        var data = await LoadDataAsync<PlombaData>("/plomba", AppJsonContext.Default.PlombaDataList);
         if (data != null)
         {
             Data = data;
         }
     }
 
-    private void GoBack(object sender, RoutedEventArgs e)
-    {
-        Frame.Navigate(typeof(ParcelaSearch), null, new SuppressNavigationTransitionInfo());
-    }
 
     private async void CreateButtonClick(object sender, RoutedEventArgs e)
     {
-        if (await CreateItemAsync("/plomba", NewItem))
+        if (await CreateItemAsync("/plomba", NewItem, AppJsonContext.Default.PlombaData))
         {
             NewItem = new PlombaData();
             LoadData();

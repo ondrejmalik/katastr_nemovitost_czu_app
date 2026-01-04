@@ -15,47 +15,58 @@
         </Grid.RowDefinitions>
 
         <ScrollViewer Grid.Row="0">
-            <StackPanel Margin="20">
-                <TextBlock Text="Parcela" FontSize="24" FontWeight="Bold" Margin="0,0,0,20" />
+            <StackPanel Margin="24" Spacing="12">
+                <TextBlock Text="Parcela" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,0,0,12" />
 
                 <ItemsControl ItemsSource="{x:Bind Data, Mode=OneWay}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Margin="0,0,0,10" BorderBrush="Gray" BorderThickness="1" Padding="10">
-                                <StackPanel Orientation="Horizontal" Spacing="5">
-                                    <TextBlock Text="Parcelní číslo:" FontWeight="SemiBold" />
-                                    <TextBlock Text="{Binding ParcelniCislo}" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Spacing="5">
-                                    <TextBlock Text="Část parcely:" FontWeight="SemiBold" />
-                                    <TextBlock Text="{Binding CastParcely}" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Spacing="5">
-                                    <TextBlock Text="Číslo LV:" FontWeight="SemiBold" />
-                                    <HyperlinkButton Content="{Binding CisloLv}" Click="GoLv" Padding="0"
-                                                     BorderThickness="0" Background="Transparent" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Spacing="5">
-                                    <TextBlock Text="Číslo popisné:" FontWeight="SemiBold" />
-                                    <TextBlock Text="{Binding CisloPopisne}" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Spacing="5">
-                                    <TextBlock Text="Ulice:" FontWeight="SemiBold" />
-                                    <TextBlock Text="{Binding Ulice}" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Spacing="5">
-                                    <TextBlock Text="Výměra (m²):" FontWeight="SemiBold" />
-                                    <TextBlock Text="{Binding VymeraMetruCtverecnich}" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Spacing="5">
-                                    <TextBlock Text="Hodnota:" FontWeight="SemiBold" />
-                                    <TextBlock Text="{Binding Hodnota}" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Spacing="5">
-                                    <TextBlock Text="Je stavební:" FontWeight="SemiBold" />
-                                    <TextBlock Text="{Binding JeStavebni}" />
-                                </StackPanel>
-                            </StackPanel>
+                            <Border CornerRadius="8" BorderThickness="1" 
+                                    BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" 
+                                    Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
+                                    Padding="16" Margin="0,0,0,12">
+                                <Grid ColumnSpacing="12" RowSpacing="8">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <TextBlock Text="Parcelní číslo:" Style="{ThemeResource BodyStrongTextBlockStyle}" Grid.Row="0" Grid.Column="0"/>
+                                    <TextBlock Text="{Binding ParcelniCislo}" Style="{ThemeResource BodyTextBlockStyle}" Grid.Row="0" Grid.Column="1"/>
+
+                                    <TextBlock Text="Část parcely:" Style="{ThemeResource BodyStrongTextBlockStyle}" Grid.Row="1" Grid.Column="0"/>
+                                    <TextBlock Text="{Binding CastParcely}" Style="{ThemeResource BodyTextBlockStyle}" Grid.Row="1" Grid.Column="1"/>
+
+                                    <TextBlock Text="Číslo LV:" Style="{ThemeResource BodyStrongTextBlockStyle}" Grid.Row="2" Grid.Column="0"/>
+                                    <HyperlinkButton Content="{Binding CisloLv}" Click="GoLv" Padding="0" Margin="-3,0,0,0"
+                                                     Grid.Row="2" Grid.Column="1"/>
+
+                                    <TextBlock Text="Číslo popisné:" Style="{ThemeResource BodyStrongTextBlockStyle}" Grid.Row="3" Grid.Column="0"/>
+                                    <TextBlock Text="{Binding CisloPopisne}" Style="{ThemeResource BodyTextBlockStyle}" Grid.Row="3" Grid.Column="1"/>
+
+                                    <TextBlock Text="Ulice:" Style="{ThemeResource BodyStrongTextBlockStyle}" Grid.Row="4" Grid.Column="0"/>
+                                    <TextBlock Text="{Binding Ulice}" Style="{ThemeResource BodyTextBlockStyle}" Grid.Row="4" Grid.Column="1"/>
+
+                                    <TextBlock Text="Výměra (m²):" Style="{ThemeResource BodyStrongTextBlockStyle}" Grid.Row="5" Grid.Column="0"/>
+                                    <TextBlock Text="{Binding VymeraMetruCtverecnich}" Style="{ThemeResource BodyTextBlockStyle}" Grid.Row="5" Grid.Column="1"/>
+
+                                    <TextBlock Text="Hodnota:" Style="{ThemeResource BodyStrongTextBlockStyle}" Grid.Row="6" Grid.Column="0"/>
+                                    <TextBlock Text="{Binding Hodnota}" Style="{ThemeResource BodyTextBlockStyle}" Grid.Row="6" Grid.Column="1"/>
+
+                                    <TextBlock Text="Je stavební:" Style="{ThemeResource BodyStrongTextBlockStyle}" Grid.Row="7" Grid.Column="0"/>
+                                    <TextBlock Text="{Binding JeStavebni}" Style="{ThemeResource BodyTextBlockStyle}" Grid.Row="7" Grid.Column="1"/>
+                                </Grid>
+                            </Border>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
@@ -67,8 +78,7 @@
             Content="Back"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
-            FontSize="30"
-            Margin="20"
+            Margin="24"
             Click="GoBack" />
     </Grid>
 

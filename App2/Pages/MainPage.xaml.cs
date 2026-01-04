@@ -83,7 +83,10 @@ public sealed partial class MainPage : Page
 
     private void PortTextBoxTextChanged(object sender, TextChangedEventArgs e)
     {
-        AppSettings.Port = Convert.ToInt32(((TextBox)sender).Text);
-        CheckHealth();
+        if (int.TryParse(((TextBox)sender).Text, out var port))
+        {
+            AppSettings.Port = port;
+            CheckHealth();
+        }
     }
 }

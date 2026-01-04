@@ -1,16 +1,7 @@
-using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Net.Http;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Text.Json;
-using System.Diagnostics;
-using System.Threading.Tasks;
 using App2.Types;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.UI.Xaml.Navigation;
 
 
@@ -65,21 +56,17 @@ public sealed partial class MajitelCrud : CrudPageBase
 
     private async void LoadData()
     {
-        var data = await LoadDataAsync<MajitelData>("/majitel");
+        var data = await LoadDataAsync<MajitelData>("/majitel", AppJsonContext.Default.MajitelDataList);
         if (data != null)
         {
             Data = data;
         }
     }
 
-    private void GoBack(object sender, RoutedEventArgs e)
-    {
-        Frame.Navigate(typeof(CrudMenuPage), null, new SuppressNavigationTransitionInfo());
-    }
 
     private async void CreateButtonClick(object sender, RoutedEventArgs e)
     {
-        if (await CreateItemAsync("/majitel", NewMajitel))
+        if (await CreateItemAsync("/majitel", NewMajitel, AppJsonContext.Default.MajitelData))
         {
             NewMajitel = new MajitelData();
             LoadData();
@@ -90,7 +77,7 @@ public sealed partial class MajitelCrud : CrudPageBase
     {
         if (sender is Button button && button.Tag is MajitelData majitel)
         {
-            if (await UpdateItemAsync("/majitel", majitel))
+            if (await UpdateItemAsync("/majitel", majitel, AppJsonContext.Default.MajitelData))
             {
                 LoadData();
             }

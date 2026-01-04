@@ -1,4 +1,4 @@
-﻿﻿﻿using System.Collections.Generic;
+﻿﻿﻿﻿using System.Collections.Generic;
 using App2.Types;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -51,21 +51,17 @@ public sealed partial class TypRizeniCrud : CrudPageBase
 
     private async void LoadData()
     {
-        var data = await LoadDataAsync<TypRizeniData>("/typ_rizeni");
+        var data = await LoadDataAsync<TypRizeniData>("/typ_rizeni", AppJsonContext.Default.TypRizeniDataList);
         if (data != null)
         {
             Data = data;
         }
     }
 
-    private void GoBack(object sender, RoutedEventArgs e)
-    {
-        Frame.Navigate(typeof(CrudMenuPage), null, new SuppressNavigationTransitionInfo());
-    }
 
     private async void CreateButtonClick(object sender, RoutedEventArgs e)
     {
-        if (await CreateItemAsync("/typ_rizeni", NewItem))
+        if (await CreateItemAsync("/typ_rizeni", NewItem, AppJsonContext.Default.TypRizeniData))
         {
             NewItem = new TypRizeniData();
             LoadData();
@@ -76,7 +72,7 @@ public sealed partial class TypRizeniCrud : CrudPageBase
     {
         if (sender is Button button && button.Tag is TypRizeniData item)
         {
-            if (await UpdateItemAsync("/typ_rizeni", item))
+            if (await UpdateItemAsync("/typ_rizeni", item, AppJsonContext.Default.TypRizeniData))
             {
                 LoadData();
             }

@@ -15,51 +15,86 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <ScrollViewer Grid.Row="0">
-            <StackPanel Margin="20">
-                <TextBlock Text="Řízení Operace" FontSize="24" FontWeight="Bold" Margin="0,0,0,20" />
-                <StackPanel Margin="0,0,0,20" BorderBrush="Gray" BorderThickness="1" Padding="10">
-                    <TextBlock Text="Nová Operace Řízení" FontSize="18" FontWeight="Bold" Margin="0,0,0,10" />
-                    <StackPanel Orientation="Horizontal" Spacing="5" Margin="0,0,0,5">
-                        <TextBlock Text="Řízení ID:" FontWeight="SemiBold" VerticalAlignment="Center" Width="120" />
-                        <TextBox Text="{x:Bind NewItem.RizeniId, Mode=TwoWay}" Width="100" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="5" Margin="0,0,0,5">
-                        <TextBlock Text="Typ Operace ID:" FontWeight="SemiBold" VerticalAlignment="Center" Width="120" />
-                        <TextBox Text="{x:Bind NewItem.TypOperaceId, Mode=TwoWay}" Width="100" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="5" Margin="0,0,0,5">
-                        <TextBlock Text="Datum:" FontWeight="SemiBold" VerticalAlignment="Center" Width="120" />
-                        <TextBox Text="{x:Bind NewItem.Datum, Mode=TwoWay}" Width="150" PlaceholderText="YYYY-MM-DD" />
-                    </StackPanel>
-                    <Button Content="Create" Click="CreateButtonClick" Margin="0,10,0,0" />
+            <StackPanel Margin="24" Spacing="24">
+                <TextBlock Text="Řízení Operace" Style="{ThemeResource TitleTextBlockStyle}" />
+                
+                <!-- New Item -->
+                <StackPanel Spacing="12">
+                    <TextBlock Text="Nová Operace Řízení" Style="{ThemeResource SubtitleTextBlockStyle}" />
+                    <Border CornerRadius="8" BorderThickness="1" 
+                            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" 
+                            Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
+                            Padding="16">
+                        <Grid ColumnSpacing="12" RowSpacing="12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            
+                            <TextBlock Text="Řízení ID:" Style="{ThemeResource BodyStrongTextBlockStyle}" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0"/>
+                            <TextBox Text="{x:Bind NewItem.RizeniId, Mode=TwoWay}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch"/>
+                            
+                            <TextBlock Text="Typ Operace ID:" Style="{ThemeResource BodyStrongTextBlockStyle}" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0"/>
+                            <TextBox Text="{x:Bind NewItem.TypOperaceId, Mode=TwoWay}" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch"/>
+                            
+                            <TextBlock Text="Datum:" Style="{ThemeResource BodyStrongTextBlockStyle}" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0"/>
+                            <TextBox Text="{x:Bind NewItem.Datum, Mode=TwoWay}" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" PlaceholderText="YYYY-MM-DD"/>
+                            
+                            <Button Content="Create" Click="CreateButtonClick" Style="{ThemeResource AccentButtonStyle}" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right"/>
+                        </Grid>
+                    </Border>
                 </StackPanel>
-                <ItemsControl ItemsSource="{x:Bind Data, Mode=OneWay}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate x:DataType="types:RizeniOperaceRowData">
-                            <StackPanel Margin="0,0,0,10" BorderBrush="Gray" BorderThickness="1" Padding="10">
-                                <StackPanel Orientation="Horizontal" Spacing="5" Margin="0,0,0,5">
-                                    <TextBlock Text="Řízení ID:" FontWeight="SemiBold" VerticalAlignment="Center" Width="120" />
-                                    <TextBlock Text="{x:Bind RizeniId}" VerticalAlignment="Center" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Spacing="5" Margin="0,0,0,5">
-                                    <TextBlock Text="Typ Operace ID:" FontWeight="SemiBold" VerticalAlignment="Center" Width="120" />
-                                    <TextBlock Text="{x:Bind TypOperaceId}" VerticalAlignment="Center" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Spacing="5" Margin="0,0,0,5">
-                                    <TextBlock Text="Datum:" FontWeight="SemiBold" VerticalAlignment="Center" Width="120" />
-                                    <TextBlock Text="{x:Bind Datum}" VerticalAlignment="Center" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Spacing="10" Margin="0,10,0,0">
-                                    <Button Content="Delete" Click="DeleteButtonClick" Tag="{x:Bind}" />
-                                </StackPanel>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                
+                <!-- List -->
+                <StackPanel Spacing="12">
+                    <TextBlock Text="Seznam operací řízení" Style="{ThemeResource SubtitleTextBlockStyle}" />
+                    <ItemsControl ItemsSource="{x:Bind Data, Mode=OneWay}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate x:DataType="types:RizeniOperaceRowData">
+                                <Border CornerRadius="8" BorderThickness="1" 
+                                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" 
+                                        Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
+                                        Padding="16" Margin="0,0,0,12">
+                                    <Grid ColumnSpacing="12" RowSpacing="12">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <TextBlock Text="Řízení ID:" Style="{ThemeResource BodyStrongTextBlockStyle}" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0"/>
+                                        <TextBlock Text="{x:Bind RizeniId}" Style="{ThemeResource BodyTextBlockStyle}" VerticalAlignment="Center" Grid.Row="0" Grid.Column="1"/>
+
+                                        <TextBlock Text="Typ Operace ID:" Style="{ThemeResource BodyStrongTextBlockStyle}" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0"/>
+                                        <TextBlock Text="{x:Bind TypOperaceId}" Style="{ThemeResource BodyTextBlockStyle}" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1"/>
+
+                                        <TextBlock Text="Datum:" Style="{ThemeResource BodyStrongTextBlockStyle}" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0"/>
+                                        <TextBlock Text="{x:Bind Datum}" Style="{ThemeResource BodyTextBlockStyle}" VerticalAlignment="Center" Grid.Row="2" Grid.Column="1"/>
+
+                                        <StackPanel Orientation="Horizontal" Spacing="8" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right">
+                                            <Button Content="Delete" Click="DeleteButtonClick" Tag="{x:Bind}"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
             </StackPanel>
         </ScrollViewer>
-        <Button Grid.Row="1" Content="Back" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="30" Margin="20" Click="GoBack" />
-        <InfoBar x:Name="MessageInfoBar" Grid.RowSpan="2" IsOpen="False" VerticalAlignment="Bottom" Margin="20" />
+
+        <InfoBar x:Name="MessageInfoBar" Grid.Row="0" Grid.RowSpan="2" IsOpen="False" VerticalAlignment="Bottom" Margin="24" />
     </Grid>
 </crud:CrudPageBase>
 

@@ -20,212 +20,338 @@
         </Grid.RowDefinitions>
 
         <ScrollViewer Grid.Row="0">
-            <StackPanel Margin="20">
-                <TextBlock Text="Výpis LV" FontSize="24" FontWeight="Bold" Margin="0,0,0,20" />
+            <StackPanel Margin="24" Spacing="24">
+                <TextBlock Text="Výpis LV" Style="{ThemeResource TitleTextBlockStyle}" />
 
-                <TextBlock Text="Part A (Vlastníci)" FontSize="20" FontWeight="SemiBold" Margin="0,10,0,5" />
-                <ItemsControl ItemsSource="{x:Bind Data.PartA, Mode=OneWay}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Margin="0,0,0,10" BorderBrush="Gray" BorderThickness="1" Padding="10">
-                                <StackPanel Orientation="Horizontal" Spacing="5">
-                                    <TextBlock Text="Jméno:" FontWeight="SemiBold" />
-                                    <TextBlock Text="{Binding Jmeno}" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Spacing="5">
-                                    <TextBlock Text="Příjmení:" FontWeight="SemiBold" />
-                                    <TextBlock Text="{Binding Prijmeni}" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Spacing="5">
-                                    <TextBlock Text="Bydliště:" FontWeight="SemiBold" />
-                                    <TextBlock Text="{Binding Bydliste}" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Spacing="5">
-                                    <TextBlock Text="Podíl (setin):" FontWeight="SemiBold" />
-                                    <TextBlock Text="{Binding PodilSetin}" />
-                                </StackPanel>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                <!-- Part A -->
+                <StackPanel Spacing="12">
+                    <TextBlock Text="Part A (Vlastníci)" Style="{ThemeResource SubtitleTextBlockStyle}" />
+                    <ItemsControl ItemsSource="{x:Bind Data.PartA, Mode=OneWay}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border CornerRadius="8" BorderThickness="1" 
+                                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" 
+                                        Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
+                                        Padding="16" Margin="0,0,0,12">
+                                    <Grid ColumnSpacing="12" RowSpacing="8">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
 
-                <TextBlock Text="Part B (Nemovitosti)" FontSize="20" FontWeight="SemiBold" Margin="0,20,0,5" />
-                <ItemsControl ItemsSource="{x:Bind Data.PartB, Mode=OneWay}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Margin="0,0,0,10" BorderBrush="Gray" BorderThickness="1" Padding="10">
-                                <StackPanel Orientation="Horizontal" Spacing="5">
-                                    <TextBlock Text="Číslo popisné:" FontWeight="SemiBold" />
-                                    <TextBlock Text="{Binding CisloPopisne}" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Spacing="5">
-                                    <TextBlock Text="Ulice:" FontWeight="SemiBold" />
-                                    <TextBlock Text="{Binding Ulice}" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Spacing="5">
-                                    <TextBlock Text="Katastrální území:" FontWeight="SemiBold" />
-                                    <TextBlock Text="{Binding NazevKu}" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Spacing="5">
-                                    <TextBlock Text="Parcela:" FontWeight="SemiBold" />
-                                    <TextBlock Text="St." Visibility="{Binding JeStavebni, Converter={StaticResource BoolToVisibilityConverter}}" />
-                                    <TextBlock Text="{Binding ParcelniCislo}" />
-                                </StackPanel>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                                        <TextBlock Text="Jméno:" Style="{ThemeResource BodyStrongTextBlockStyle}" Grid.Row="0" Grid.Column="0"/>
+                                        <TextBlock Text="{Binding Jmeno}" Style="{ThemeResource BodyTextBlockStyle}" Grid.Row="0" Grid.Column="1"/>
 
-                <TextBlock Text="Part B Majitel (Omezení vlastnického práva)" FontSize="20" FontWeight="SemiBold"
-                           Margin="0,20,0,5" />
-                <ItemsControl ItemsSource="{x:Bind Data.PartBMajitel, Mode=OneWay}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Margin="0,0,0,10" BorderBrush="Gray" BorderThickness="1" Padding="10">
-                                <TextBlock Text="{Binding Popis}" FontWeight="Bold" />
-                                <StackPanel Orientation="Horizontal" Spacing="5">
-                                    <TextBlock Text="Povinný:" />
-                                    <TextBlock Text="{Binding TitulPovinny}" />
-                                    <TextBlock Text="{Binding JmenoPovinny}" />
-                                    <TextBlock Text="{Binding PrijmeniPovinny}" />
-                                    <TextBlock Text="{Binding IcoPovinny}" />
-                                    <TextBlock Text="{Binding RodneCisloPovinny}" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Spacing="5">
-                                    <TextBlock Text="Oprávněná parcela:" />
-                                    <TextBlock Text="St." Visibility="{Binding JeStavebniOpravnena, Converter={StaticResource BoolToVisibilityConverter}}" />
-                                    <TextBlock Text="{Binding ParcelniCisloOpravnena}" />
-                                    <TextBlock Text="/" />
-                                    <TextBlock Text="{Binding CastParcelyOpravnena}" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Spacing="5">
-                                    <TextBlock Text="Datum zřízení:" />
-                                    <TextBlock Text="{Binding DatumZrizeni}" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Spacing="5">
-                                    <TextBlock Text="Datum právních účinků:" />
-                                    <TextBlock Text="{Binding DatumPravnichUcinku}" />
-                                </StackPanel>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                                        <TextBlock Text="Příjmení:" Style="{ThemeResource BodyStrongTextBlockStyle}" Grid.Row="1" Grid.Column="0"/>
+                                        <TextBlock Text="{Binding Prijmeni}" Style="{ThemeResource BodyTextBlockStyle}" Grid.Row="1" Grid.Column="1"/>
 
-                <TextBlock Text="Part B Parcela (Jiné zápisy)" FontSize="20" FontWeight="SemiBold" Margin="0,20,0,5" />
-                <ItemsControl ItemsSource="{x:Bind Data.PartBParcela, Mode=OneWay}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Margin="0,0,0,10" BorderBrush="Gray" BorderThickness="1" Padding="10">
-                                <TextBlock Text="{Binding Popis}" FontWeight="Bold" />
-                                <StackPanel Orientation="Horizontal" Spacing="5">
-                                    <TextBlock Text="Oprávněná:" />
-                                    <TextBlock Text="St." Visibility="{Binding JeStavebniOpravnena, Converter={StaticResource BoolToVisibilityConverter}}" />
-                                    <TextBlock Text="{Binding ParcelniCisloOpravnena}" />
-                                    <TextBlock Text="/" />
-                                    <TextBlock Text="{Binding CastParcelyOpravnena}" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Spacing="5">
-                                    <TextBlock Text="Povinná:" />
-                                    <TextBlock Text="St." Visibility="{Binding JeStavebniPovinna, Converter={StaticResource BoolToVisibilityConverter}}" />
-                                    <TextBlock Text="{Binding ParcelniCisloPovinna}" />
-                                    <TextBlock Text="/" />
-                                    <TextBlock Text="{Binding CastParcelyPovinna}" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Spacing="5">
-                                    <TextBlock Text="Datum zřízení:" />
-                                    <TextBlock Text="{Binding DatumZrizeni}" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Spacing="5">
-                                    <TextBlock Text="Datum právních účinků:" />
-                                    <TextBlock Text="{Binding DatumPravnichUcinku}" />
-                                </StackPanel>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                                        <TextBlock Text="Bydliště:" Style="{ThemeResource BodyStrongTextBlockStyle}" Grid.Row="2" Grid.Column="0"/>
+                                        <TextBlock Text="{Binding Bydliste}" Style="{ThemeResource BodyTextBlockStyle}" Grid.Row="2" Grid.Column="1"/>
 
-                <TextBlock Text="Part C (Omezení vlastnického práva)" FontSize="20" FontWeight="SemiBold"
-                           Margin="0,20,0,5" />
-                <ItemsControl ItemsSource="{x:Bind Data.PartC, Mode=OneWay}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Margin="0,0,0,10" BorderBrush="Gray" BorderThickness="1" Padding="10">
-                                <TextBlock Text="{Binding Popis}" FontWeight="Bold" />
-                                <StackPanel Orientation="Horizontal" Spacing="5">
-                                    <TextBlock Text="Oprávněná:" />
-                                    <TextBlock Text="St." Visibility="{Binding JeStavebniOpravnena, Converter={StaticResource BoolToVisibilityConverter}}" />
-                                    <TextBlock Text="{Binding ParcelniCisloOpravnena}" />
-                                    <TextBlock Text="/" />
-                                    <TextBlock Text="{Binding CastParcelyOpravnena}" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Spacing="5">
-                                    <TextBlock Text="Povinná:" />
-                                    <TextBlock Text="St." Visibility="{Binding JeStavebniPovinna, Converter={StaticResource BoolToVisibilityConverter}}" />
-                                    <TextBlock Text="{Binding ParcelniCisloPovinna}" />
-                                    <TextBlock Text="/" />
-                                    <TextBlock Text="{Binding CastParcelyPovinna}" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Spacing="5">
-                                    <TextBlock Text="Datum zřízení:" />
-                                    <TextBlock Text="{Binding DatumZrizeni}" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Spacing="5">
-                                    <TextBlock Text="Datum právních účinků:" />
-                                    <TextBlock Text="{Binding DatumPravnichUcinku}" />
-                                </StackPanel>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                                        <TextBlock Text="Podíl (setin):" Style="{ThemeResource BodyStrongTextBlockStyle}" Grid.Row="3" Grid.Column="0"/>
+                                        <TextBlock Text="{Binding PodilSetin}" Style="{ThemeResource BodyTextBlockStyle}" Grid.Row="3" Grid.Column="1"/>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
 
-                <TextBlock Text="Part D (Jiné zápisy - Plomby)" FontSize="20" FontWeight="SemiBold" Margin="0,20,0,5" />
-                <ItemsControl ItemsSource="{x:Bind Data.PartD, Mode=OneWay}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Margin="0,0,0,10" BorderBrush="Gray" BorderThickness="1" Padding="10">
-                                <StackPanel Orientation="Horizontal" Spacing="5">
-                                    <TextBlock Text="Řízení:" />
-                                    <TextBlock Text="{Binding TypRizeniZkratka}" />
-                                    <TextBlock Text="-" />
-                                    
-                                    <HyperlinkButton Content="{Binding CisloRizeni}" Click="GoSpravniRizeni" Padding="0"
-                                                     BorderThickness="0" Background="Transparent" />
-                                    <TextBlock Text="/" />
-                                    <TextBlock Text="{Binding RokRizeni}" />
-                                </StackPanel>
-                                <TextBlock Text="{Binding NazevKatastralnihoUzemi}" />
-                                <StackPanel Orientation="Horizontal" Spacing="5">
-                                    <TextBlock Text="Parcela:" />
-                                    <TextBlock Text="St." Visibility="{Binding JeStavebni, Converter={StaticResource BoolToVisibilityConverter}}" />
-                                    <TextBlock Text="{Binding ParcelniCislo}" />
-                                    <TextBlock Text="/" />
-                                    <TextBlock Text="{Binding CastParcely}" />
-                                </StackPanel>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                <!-- Part B -->
+                <StackPanel Spacing="12">
+                    <TextBlock Text="Part B (Nemovitosti)" Style="{ThemeResource SubtitleTextBlockStyle}" />
+                    <ItemsControl ItemsSource="{x:Bind Data.PartB, Mode=OneWay}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border CornerRadius="8" BorderThickness="1" 
+                                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" 
+                                        Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
+                                        Padding="16" Margin="0,0,0,12">
+                                    <Grid ColumnSpacing="12" RowSpacing="8">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
 
-                <TextBlock Text="Part F (BPEJ)" FontSize="20" FontWeight="SemiBold" Margin="0,20,0,5" />
-                <ItemsControl ItemsSource="{x:Bind Data.PartF, Mode=OneWay}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Margin="0,0,0,10" BorderBrush="Gray" BorderThickness="1" Padding="10">
-                                <StackPanel Orientation="Horizontal" Spacing="5">
-                                    <TextBlock Text="Parcela:" />
-                                    <TextBlock Text="St." Visibility="{Binding JeStavebni, Converter={StaticResource BoolToVisibilityConverter}}" />
-                                    <TextBlock Text="{Binding ParcelniCislo}" />
-                                    <TextBlock Text="/" />
-                                    <TextBlock Text="{Binding CastParcely}" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Spacing="5">
-                                    <TextBlock Text="Hodnota:" />
-                                    <TextBlock Text="{Binding Hodnota}" />
-                                </StackPanel>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                                        <TextBlock Text="Číslo popisné:" Style="{ThemeResource BodyStrongTextBlockStyle}" Grid.Row="0" Grid.Column="0"/>
+                                        <TextBlock Text="{Binding CisloPopisne}" Style="{ThemeResource BodyTextBlockStyle}" Grid.Row="0" Grid.Column="1"/>
+
+                                        <TextBlock Text="Ulice:" Style="{ThemeResource BodyStrongTextBlockStyle}" Grid.Row="1" Grid.Column="0"/>
+                                        <TextBlock Text="{Binding Ulice}" Style="{ThemeResource BodyTextBlockStyle}" Grid.Row="1" Grid.Column="1"/>
+
+                                        <TextBlock Text="Katastrální území:" Style="{ThemeResource BodyStrongTextBlockStyle}" Grid.Row="2" Grid.Column="0"/>
+                                        <TextBlock Text="{Binding NazevKu}" Style="{ThemeResource BodyTextBlockStyle}" Grid.Row="2" Grid.Column="1"/>
+
+                                        <TextBlock Text="Parcela:" Style="{ThemeResource BodyStrongTextBlockStyle}" Grid.Row="3" Grid.Column="0"/>
+                                        <StackPanel Orientation="Horizontal" Spacing="4" Grid.Row="3" Grid.Column="1">
+                                            <TextBlock Text="St." Visibility="{Binding JeStavebni, Converter={StaticResource BoolToVisibilityConverter}}" Style="{ThemeResource BodyTextBlockStyle}"/>
+                                            <TextBlock Text="{Binding ParcelniCislo}" Style="{ThemeResource BodyTextBlockStyle}"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+
+                <!-- Part B Majitel -->
+                <StackPanel Spacing="12">
+                    <TextBlock Text="Part B Majitel (Omezení vlastnického práva)" Style="{ThemeResource SubtitleTextBlockStyle}" />
+                    <ItemsControl ItemsSource="{x:Bind Data.PartBMajitel, Mode=OneWay}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border CornerRadius="8" BorderThickness="1" 
+                                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" 
+                                        Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
+                                        Padding="16" Margin="0,0,0,12">
+                                    <StackPanel Spacing="8">
+                                        <TextBlock Text="{Binding Popis}" Style="{ThemeResource BodyStrongTextBlockStyle}" />
+                                        
+                                        <Grid ColumnSpacing="12" RowSpacing="8">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+
+                                            <TextBlock Text="Povinný:" Style="{ThemeResource BodyStrongTextBlockStyle}" Grid.Row="0" Grid.Column="0"/>
+                                            <StackPanel Orientation="Horizontal" Spacing="4" Grid.Row="0" Grid.Column="1">
+                                                <TextBlock Text="{Binding TitulPovinny}" Style="{ThemeResource BodyTextBlockStyle}"/>
+                                                <TextBlock Text="{Binding JmenoPovinny}" Style="{ThemeResource BodyTextBlockStyle}"/>
+                                                <TextBlock Text="{Binding PrijmeniPovinny}" Style="{ThemeResource BodyTextBlockStyle}"/>
+                                                <TextBlock Text="{Binding IcoPovinny}" Style="{ThemeResource BodyTextBlockStyle}"/>
+                                                <TextBlock Text="{Binding RodneCisloPovinny}" Style="{ThemeResource BodyTextBlockStyle}"/>
+                                            </StackPanel>
+
+                                            <TextBlock Text="Oprávněná parcela:" Style="{ThemeResource BodyStrongTextBlockStyle}" Grid.Row="1" Grid.Column="0"/>
+                                            <StackPanel Orientation="Horizontal" Spacing="4" Grid.Row="1" Grid.Column="1">
+                                                <TextBlock Text="St." Visibility="{Binding JeStavebniOpravnena, Converter={StaticResource BoolToVisibilityConverter}}" Style="{ThemeResource BodyTextBlockStyle}"/>
+                                                <TextBlock Text="{Binding ParcelniCisloOpravnena}" Style="{ThemeResource BodyTextBlockStyle}"/>
+                                                <TextBlock Text="/" Style="{ThemeResource BodyTextBlockStyle}"/>
+                                                <TextBlock Text="{Binding CastParcelyOpravnena}" Style="{ThemeResource BodyTextBlockStyle}"/>
+                                            </StackPanel>
+
+                                            <TextBlock Text="Datum zřízení:" Style="{ThemeResource BodyStrongTextBlockStyle}" Grid.Row="2" Grid.Column="0"/>
+                                            <TextBlock Text="{Binding DatumZrizeni}" Style="{ThemeResource BodyTextBlockStyle}" Grid.Row="2" Grid.Column="1"/>
+
+                                            <TextBlock Text="Datum právních účinků:" Style="{ThemeResource BodyStrongTextBlockStyle}" Grid.Row="3" Grid.Column="0"/>
+                                            <TextBlock Text="{Binding DatumPravnichUcinku}" Style="{ThemeResource BodyTextBlockStyle}" Grid.Row="3" Grid.Column="1"/>
+                                        </Grid>
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+
+                <!-- Part B Parcela -->
+                <StackPanel Spacing="12">
+                    <TextBlock Text="Part B Parcela (Jiné zápisy)" Style="{ThemeResource SubtitleTextBlockStyle}" />
+                    <ItemsControl ItemsSource="{x:Bind Data.PartBParcela, Mode=OneWay}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border CornerRadius="8" BorderThickness="1" 
+                                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" 
+                                        Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
+                                        Padding="16" Margin="0,0,0,12">
+                                    <StackPanel Spacing="8">
+                                        <TextBlock Text="{Binding Popis}" Style="{ThemeResource BodyStrongTextBlockStyle}" />
+                                        
+                                        <Grid ColumnSpacing="12" RowSpacing="8">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+
+                                            <TextBlock Text="Oprávněná:" Style="{ThemeResource BodyStrongTextBlockStyle}" Grid.Row="0" Grid.Column="0"/>
+                                            <StackPanel Orientation="Horizontal" Spacing="4" Grid.Row="0" Grid.Column="1">
+                                                <TextBlock Text="St." Visibility="{Binding JeStavebniOpravnena, Converter={StaticResource BoolToVisibilityConverter}}" Style="{ThemeResource BodyTextBlockStyle}"/>
+                                                <TextBlock Text="{Binding ParcelniCisloOpravnena}" Style="{ThemeResource BodyTextBlockStyle}"/>
+                                                <TextBlock Text="/" Style="{ThemeResource BodyTextBlockStyle}"/>
+                                                <TextBlock Text="{Binding CastParcelyOpravnena}" Style="{ThemeResource BodyTextBlockStyle}"/>
+                                            </StackPanel>
+
+                                            <TextBlock Text="Povinná:" Style="{ThemeResource BodyStrongTextBlockStyle}" Grid.Row="1" Grid.Column="0"/>
+                                            <StackPanel Orientation="Horizontal" Spacing="4" Grid.Row="1" Grid.Column="1">
+                                                <TextBlock Text="St." Visibility="{Binding JeStavebniPovinna, Converter={StaticResource BoolToVisibilityConverter}}" Style="{ThemeResource BodyTextBlockStyle}"/>
+                                                <TextBlock Text="{Binding ParcelniCisloPovinna}" Style="{ThemeResource BodyTextBlockStyle}"/>
+                                                <TextBlock Text="/" Style="{ThemeResource BodyTextBlockStyle}"/>
+                                                <TextBlock Text="{Binding CastParcelyPovinna}" Style="{ThemeResource BodyTextBlockStyle}"/>
+                                            </StackPanel>
+
+                                            <TextBlock Text="Datum zřízení:" Style="{ThemeResource BodyStrongTextBlockStyle}" Grid.Row="2" Grid.Column="0"/>
+                                            <TextBlock Text="{Binding DatumZrizeni}" Style="{ThemeResource BodyTextBlockStyle}" Grid.Row="2" Grid.Column="1"/>
+
+                                            <TextBlock Text="Datum právních účinků:" Style="{ThemeResource BodyStrongTextBlockStyle}" Grid.Row="3" Grid.Column="0"/>
+                                            <TextBlock Text="{Binding DatumPravnichUcinku}" Style="{ThemeResource BodyTextBlockStyle}" Grid.Row="3" Grid.Column="1"/>
+                                        </Grid>
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+
+                <!-- Part C -->
+                <StackPanel Spacing="12">
+                    <TextBlock Text="Part C (Omezení vlastnického práva)" Style="{ThemeResource SubtitleTextBlockStyle}" />
+                    <ItemsControl ItemsSource="{x:Bind Data.PartC, Mode=OneWay}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border CornerRadius="8" BorderThickness="1" 
+                                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" 
+                                        Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
+                                        Padding="16" Margin="0,0,0,12">
+                                    <StackPanel Spacing="8">
+                                        <TextBlock Text="{Binding Popis}" Style="{ThemeResource BodyStrongTextBlockStyle}" />
+                                        
+                                        <Grid ColumnSpacing="12" RowSpacing="8">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+
+                                            <TextBlock Text="Oprávněná:" Style="{ThemeResource BodyStrongTextBlockStyle}" Grid.Row="0" Grid.Column="0"/>
+                                            <StackPanel Orientation="Horizontal" Spacing="4" Grid.Row="0" Grid.Column="1">
+                                                <TextBlock Text="St." Visibility="{Binding JeStavebniOpravnena, Converter={StaticResource BoolToVisibilityConverter}}" Style="{ThemeResource BodyTextBlockStyle}"/>
+                                                <TextBlock Text="{Binding ParcelniCisloOpravnena}" Style="{ThemeResource BodyTextBlockStyle}"/>
+                                                <TextBlock Text="/" Style="{ThemeResource BodyTextBlockStyle}"/>
+                                                <TextBlock Text="{Binding CastParcelyOpravnena}" Style="{ThemeResource BodyTextBlockStyle}"/>
+                                            </StackPanel>
+
+                                            <TextBlock Text="Povinná:" Style="{ThemeResource BodyStrongTextBlockStyle}" Grid.Row="1" Grid.Column="0"/>
+                                            <StackPanel Orientation="Horizontal" Spacing="4" Grid.Row="1" Grid.Column="1">
+                                                <TextBlock Text="St." Visibility="{Binding JeStavebniPovinna, Converter={StaticResource BoolToVisibilityConverter}}" Style="{ThemeResource BodyTextBlockStyle}"/>
+                                                <TextBlock Text="{Binding ParcelniCisloPovinna}" Style="{ThemeResource BodyTextBlockStyle}"/>
+                                                <TextBlock Text="/" Style="{ThemeResource BodyTextBlockStyle}"/>
+                                                <TextBlock Text="{Binding CastParcelyPovinna}" Style="{ThemeResource BodyTextBlockStyle}"/>
+                                            </StackPanel>
+
+                                            <TextBlock Text="Datum zřízení:" Style="{ThemeResource BodyStrongTextBlockStyle}" Grid.Row="2" Grid.Column="0"/>
+                                            <TextBlock Text="{Binding DatumZrizeni}" Style="{ThemeResource BodyTextBlockStyle}" Grid.Row="2" Grid.Column="1"/>
+
+                                            <TextBlock Text="Datum právních účinků:" Style="{ThemeResource BodyStrongTextBlockStyle}" Grid.Row="3" Grid.Column="0"/>
+                                            <TextBlock Text="{Binding DatumPravnichUcinku}" Style="{ThemeResource BodyTextBlockStyle}" Grid.Row="3" Grid.Column="1"/>
+                                        </Grid>
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+
+                <!-- Part D -->
+                <StackPanel Spacing="12">
+                    <TextBlock Text="Part D (Jiné zápisy - Plomby)" Style="{ThemeResource SubtitleTextBlockStyle}" />
+                    <ItemsControl ItemsSource="{x:Bind Data.PartD, Mode=OneWay}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border CornerRadius="8" BorderThickness="1" 
+                                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" 
+                                        Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
+                                        Padding="16" Margin="0,0,0,12">
+                                    <Grid ColumnSpacing="12" RowSpacing="8">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <TextBlock Text="Řízení:" Style="{ThemeResource BodyStrongTextBlockStyle}" Grid.Row="0" Grid.Column="0"/>
+                                        <StackPanel Orientation="Horizontal" Spacing="4" Grid.Row="0" Grid.Column="1">
+                                            <TextBlock Text="{Binding TypRizeniZkratka}" Style="{ThemeResource BodyTextBlockStyle}"/>
+                                            <TextBlock Text="-" Style="{ThemeResource BodyTextBlockStyle}"/>
+                                            <HyperlinkButton Content="{Binding CisloRizeni}" Click="GoSpravniRizeni" Padding="0" Margin="-3,0,0,0"/>
+                                            <TextBlock Text="/" Style="{ThemeResource BodyTextBlockStyle}"/>
+                                            <TextBlock Text="{Binding RokRizeni}" Style="{ThemeResource BodyTextBlockStyle}"/>
+                                        </StackPanel>
+
+                                        <TextBlock Text="Katastrální území:" Style="{ThemeResource BodyStrongTextBlockStyle}" Grid.Row="1" Grid.Column="0"/>
+                                        <TextBlock Text="{Binding NazevKatastralnihoUzemi}" Style="{ThemeResource BodyTextBlockStyle}" Grid.Row="1" Grid.Column="1"/>
+
+                                        <TextBlock Text="Parcela:" Style="{ThemeResource BodyStrongTextBlockStyle}" Grid.Row="2" Grid.Column="0"/>
+                                        <StackPanel Orientation="Horizontal" Spacing="4" Grid.Row="2" Grid.Column="1">
+                                            <TextBlock Text="St." Visibility="{Binding JeStavebni, Converter={StaticResource BoolToVisibilityConverter}}" Style="{ThemeResource BodyTextBlockStyle}"/>
+                                            <TextBlock Text="{Binding ParcelniCislo}" Style="{ThemeResource BodyTextBlockStyle}"/>
+                                            <TextBlock Text="/" Style="{ThemeResource BodyTextBlockStyle}"/>
+                                            <TextBlock Text="{Binding CastParcely}" Style="{ThemeResource BodyTextBlockStyle}"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+
+                <!-- Part F -->
+                <StackPanel Spacing="12">
+                    <TextBlock Text="Part F (BPEJ)" Style="{ThemeResource SubtitleTextBlockStyle}" />
+                    <ItemsControl ItemsSource="{x:Bind Data.PartF, Mode=OneWay}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border CornerRadius="8" BorderThickness="1" 
+                                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" 
+                                        Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
+                                        Padding="16" Margin="0,0,0,12">
+                                    <Grid ColumnSpacing="12" RowSpacing="8">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <TextBlock Text="Parcela:" Style="{ThemeResource BodyStrongTextBlockStyle}" Grid.Row="0" Grid.Column="0"/>
+                                        <StackPanel Orientation="Horizontal" Spacing="4" Grid.Row="0" Grid.Column="1">
+                                            <TextBlock Text="St." Visibility="{Binding JeStavebni, Converter={StaticResource BoolToVisibilityConverter}}" Style="{ThemeResource BodyTextBlockStyle}"/>
+                                            <TextBlock Text="{Binding ParcelniCislo}" Style="{ThemeResource BodyTextBlockStyle}"/>
+                                            <TextBlock Text="/" Style="{ThemeResource BodyTextBlockStyle}"/>
+                                            <TextBlock Text="{Binding CastParcely}" Style="{ThemeResource BodyTextBlockStyle}"/>
+                                        </StackPanel>
+
+                                        <TextBlock Text="Hodnota:" Style="{ThemeResource BodyStrongTextBlockStyle}" Grid.Row="1" Grid.Column="0"/>
+                                        <TextBlock Text="{Binding Hodnota}" Style="{ThemeResource BodyTextBlockStyle}" Grid.Row="1" Grid.Column="1"/>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
 
             </StackPanel>
         </ScrollViewer>
@@ -235,8 +361,7 @@
             Content="Back"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
-            FontSize="30"
-            Margin="20"
+            Margin="24"
             Click="GoBack" />
     </Grid>
 </Page>

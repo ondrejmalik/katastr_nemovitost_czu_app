@@ -51,21 +51,16 @@ public sealed partial class BpejCrud : CrudPageBase
 
     private async void LoadData()
     {
-        var data = await LoadDataAsync<BpejData>("/bpej");
+        var data = await LoadDataAsync<BpejData>("/bpej", AppJsonContext.Default.BpejDataList);
         if (data != null)
         {
             Data = data;
         }
     }
 
-    private void GoBack(object sender, RoutedEventArgs e)
-    {
-        Frame.Navigate(typeof(CrudMenuPage), null, new SuppressNavigationTransitionInfo());
-    }
-
     private async void CreateButtonClick(object sender, RoutedEventArgs e)
     {
-        if (await CreateItemAsync("/bpej", NewItem))
+        if (await CreateItemAsync("/bpej", NewItem, AppJsonContext.Default.BpejData))
         {
             NewItem = new BpejData();
             LoadData();
@@ -76,7 +71,7 @@ public sealed partial class BpejCrud : CrudPageBase
     {
         if (sender is Button button && button.Tag is BpejData item)
         {
-            if (await UpdateItemAsync("/bpej", item))
+            if (await UpdateItemAsync("/bpej", item, AppJsonContext.Default.BpejData))
             {
                 LoadData();
             }

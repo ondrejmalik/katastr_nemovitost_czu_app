@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
-using App2;
 using App2.Types;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.UI.Xaml.Navigation;
 
 namespace App2.Pages.Crud;
@@ -52,21 +50,19 @@ public sealed partial class BremenoParcelaMajitelCrud : CrudPageBase
 
     private async void LoadData()
     {
-        var data = await LoadDataAsync<BremenoParcelaMajitelData>("/bremeno_parcela_majitel");
+        var data = await LoadDataAsync<BremenoParcelaMajitelData>("/bremeno_parcela_majitel",
+            AppJsonContext.Default.BremenoParcelaMajitelDataList);
         if (data != null)
         {
             Data = data;
         }
     }
 
-    private void GoBack(object sender, RoutedEventArgs e)
-    {
-        Frame.Navigate(typeof(ParcelaSearch), null, new SuppressNavigationTransitionInfo());
-    }
 
     private async void CreateButtonClick(object sender, RoutedEventArgs e)
     {
-        if (await CreateItemAsync("/bremeno_parcela_majitel", NewItem))
+        if (await CreateItemAsync("/bremeno_parcela_majitel", NewItem,
+                AppJsonContext.Default.BremenoParcelaMajitelData))
         {
             NewItem = new BremenoParcelaMajitelData();
             LoadData();
@@ -79,7 +75,8 @@ public sealed partial class BremenoParcelaMajitelCrud : CrudPageBase
         {
             try
             {
-                var response = await HttpService.DeleteData($"/bremeno_parcela_majitel?parcela_id={item.ParcelaId}&majitel_povinny_id={item.MajitelPovinnyId}");
+                var response = await HttpService.DeleteData(
+                    $"/bremeno_parcela_majitel?parcela_id={item.ParcelaId}&majitel_povinny_id={item.MajitelPovinnyId}");
                 if (response.IsSuccessStatusCode)
                 {
                     LoadData();

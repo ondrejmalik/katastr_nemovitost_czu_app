@@ -1,4 +1,4 @@
-﻿﻿﻿using System.Collections.Generic;
+﻿﻿﻿﻿using System.Collections.Generic;
 using App2.Types;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -51,21 +51,17 @@ public sealed partial class TypOperaceCrud : CrudPageBase
 
     private async void LoadData()
     {
-        var data = await LoadDataAsync<TypOperaceData>("/typ_operace");
+        var data = await LoadDataAsync<TypOperaceData>("/typ_operace", AppJsonContext.Default.TypOperaceDataList);
         if (data != null)
         {
             Data = data;
         }
     }
 
-    private void GoBack(object sender, RoutedEventArgs e)
-    {
-        Frame.Navigate(typeof(CrudMenuPage), null, new SuppressNavigationTransitionInfo());
-    }
 
     private async void CreateButtonClick(object sender, RoutedEventArgs e)
     {
-        if (await CreateItemAsync("/typ_operace", NewItem))
+        if (await CreateItemAsync("/typ_operace", NewItem, AppJsonContext.Default.TypOperaceData))
         {
             NewItem = new TypOperaceData();
             LoadData();
@@ -76,7 +72,7 @@ public sealed partial class TypOperaceCrud : CrudPageBase
     {
         if (sender is Button button && button.Tag is TypOperaceData item)
         {
-            if (await UpdateItemAsync("/typ_operace", item))
+            if (await UpdateItemAsync("/typ_operace", item, AppJsonContext.Default.TypOperaceData))
             {
                 LoadData();
             }

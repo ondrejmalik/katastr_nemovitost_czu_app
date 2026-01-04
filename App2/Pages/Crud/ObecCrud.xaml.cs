@@ -1,8 +1,7 @@
-﻿﻿﻿using System.Collections.Generic;
+﻿﻿﻿﻿using System.Collections.Generic;
 using App2.Types;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.UI.Xaml.Navigation;
 
 namespace App2.Pages.Crud;
@@ -51,21 +50,17 @@ public sealed partial class ObecCrud : CrudPageBase
 
     private async void LoadData()
     {
-        var data = await LoadDataAsync<ObecData>("/obec");
+        var data = await LoadDataAsync<ObecData>("/obec", AppJsonContext.Default.ObecDataList);
         if (data != null)
         {
             Data = data;
         }
     }
 
-    private void GoBack(object sender, RoutedEventArgs e)
-    {
-        Frame.Navigate(typeof(CrudMenuPage), null, new SuppressNavigationTransitionInfo());
-    }
 
     private async void CreateButtonClick(object sender, RoutedEventArgs e)
     {
-        if (await CreateItemAsync("/obec", NewItem))
+        if (await CreateItemAsync("/obec", NewItem, AppJsonContext.Default.ObecData))
         {
             NewItem = new ObecData();
             LoadData();
@@ -76,7 +71,7 @@ public sealed partial class ObecCrud : CrudPageBase
     {
         if (sender is Button button && button.Tag is ObecData item)
         {
-            if (await UpdateItemAsync("/obec", item))
+            if (await UpdateItemAsync("/obec", item, AppJsonContext.Default.ObecData))
             {
                 LoadData();
             }

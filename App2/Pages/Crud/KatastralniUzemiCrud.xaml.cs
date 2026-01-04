@@ -1,8 +1,7 @@
-﻿﻿using System.Collections.Generic;
+﻿﻿﻿using System.Collections.Generic;
 using App2.Types;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.UI.Xaml.Navigation;
 
 namespace App2.Pages.Crud;
@@ -51,21 +50,17 @@ public sealed partial class KatastralniUzemiCrud : CrudPageBase
 
     private async void LoadData()
     {
-        var data = await LoadDataAsync<KatastralniUzemiData>("/katastralni_uzemi");
+        var data = await LoadDataAsync<KatastralniUzemiData>("/katastralni_uzemi", AppJsonContext.Default.KatastralniUzemiDataList);
         if (data != null)
         {
             Data = data;
         }
     }
 
-    private void GoBack(object sender, RoutedEventArgs e)
-    {
-        Frame.Navigate(typeof(CrudMenuPage), null, new SuppressNavigationTransitionInfo());
-    }
 
     private async void CreateButtonClick(object sender, RoutedEventArgs e)
     {
-        if (await CreateItemAsync("/katastralni_uzemi", NewItem))
+        if (await CreateItemAsync("/katastralni_uzemi", NewItem, AppJsonContext.Default.KatastralniUzemiData))
         {
             NewItem = new KatastralniUzemiData();
             LoadData();
@@ -76,7 +71,7 @@ public sealed partial class KatastralniUzemiCrud : CrudPageBase
     {
         if (sender is Button button && button.Tag is KatastralniUzemiData item)
         {
-            if (await UpdateItemAsync("/katastralni_uzemi", item))
+            if (await UpdateItemAsync("/katastralni_uzemi", item, AppJsonContext.Default.KatastralniUzemiData))
             {
                 LoadData();
             }

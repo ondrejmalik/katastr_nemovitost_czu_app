@@ -1,9 +1,7 @@
-﻿﻿using System.Collections.Generic;
-using App2;
+﻿﻿﻿using System.Collections.Generic;
 using App2.Types;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.UI.Xaml.Navigation;
 
 namespace App2.Pages.Crud;
@@ -52,21 +50,17 @@ public sealed partial class RizeniOperaceRowCrud : CrudPageBase
 
     private async void LoadData()
     {
-        var data = await LoadDataAsync<RizeniOperaceRowData>("/rizeni_operace");
+        var data = await LoadDataAsync<RizeniOperaceRowData>("/rizeni_operace", AppJsonContext.Default.RizeniOperaceRowDataList);
         if (data != null)
         {
             Data = data;
         }
     }
 
-    private void GoBack(object sender, RoutedEventArgs e)
-    {
-        Frame.Navigate(typeof(ParcelaSearch), null, new SuppressNavigationTransitionInfo());
-    }
 
     private async void CreateButtonClick(object sender, RoutedEventArgs e)
     {
-        if (await CreateItemAsync("/rizeni_operace", NewItem))
+        if (await CreateItemAsync("/rizeni_operace", NewItem, AppJsonContext.Default.RizeniOperaceRowData))
         {
             NewItem = new RizeniOperaceRowData();
             LoadData();

@@ -1,4 +1,4 @@
-﻿﻿﻿using System.Collections.Generic;
+﻿﻿﻿﻿using System.Collections.Generic;
 using App2.Types;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -51,21 +51,17 @@ public sealed partial class TypUcastnikaCrud : CrudPageBase
 
     private async void LoadData()
     {
-        var data = await LoadDataAsync<TypUcastnikaData>("/typ_ucastnika");
+        var data = await LoadDataAsync<TypUcastnikaData>("/typ_ucastnika", AppJsonContext.Default.TypUcastnikaDataList);
         if (data != null)
         {
             Data = data;
         }
     }
 
-    private void GoBack(object sender, RoutedEventArgs e)
-    {
-        Frame.Navigate(typeof(CrudMenuPage), null, new SuppressNavigationTransitionInfo());
-    }
 
     private async void CreateButtonClick(object sender, RoutedEventArgs e)
     {
-        if (await CreateItemAsync("/typ_ucastnika", NewItem))
+        if (await CreateItemAsync("/typ_ucastnika", NewItem, AppJsonContext.Default.TypUcastnikaData))
         {
             NewItem = new TypUcastnikaData();
             LoadData();
@@ -76,7 +72,7 @@ public sealed partial class TypUcastnikaCrud : CrudPageBase
     {
         if (sender is Button button && button.Tag is TypUcastnikaData item)
         {
-            if (await UpdateItemAsync("/typ_ucastnika", item))
+            if (await UpdateItemAsync("/typ_ucastnika", item, AppJsonContext.Default.TypUcastnikaData))
             {
                 LoadData();
             }

@@ -8,45 +8,43 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
     <Grid>
-        <TextBlock Text="Katastr Nemovitosti" FontSize="45" Margin="20" HorizontalAlignment="Center"
-                   VerticalAlignment="Top" />
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button
-                Content="Parcela"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                Margin="10"
-                FontSize="30"
-                Click="GoParcela" />
-            <Button
-                Content="List Vlastnictvi"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                Margin="20"
-                FontSize="30"
-                Click="GoLv" />
-            <Button
-                Content="Správní Řízení"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                Margin="20"
-                FontSize="30"
-                Click="GoSpravniRizeni" />
-            <Button
-                Content="Crud"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                Margin="10"
-                FontSize="30"
-                Click="GoCrud" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="24" Spacing="12">
+            <StackPanel>
+                <TextBlock Text="Address" Style="{ThemeResource CaptionTextBlockStyle}" Margin="0,0,0,4" />
+                <TextBox x:Name="AddressTextBox" PlaceholderText="Address" Width="150" TextChanged="AddressTextBoxTextChanged" />
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Text="Port" Style="{ThemeResource CaptionTextBlockStyle}" Margin="0,0,0,4" />
+                <TextBox x:Name="PortTextBox" PlaceholderText="Port" Width="100" TextChanged="PortTextBoxTextChanged" />
+            </StackPanel>
         </StackPanel>
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20">
-            <TextBlock Text="Address" Margin="0,0,0,5" />
-            <TextBox x:Name="AddressTextBox" PlaceholderText="Address" Width="100" Margin="0,0,0,10"
-                     TextChanged="AddressTextBoxTextChanged" />
-            <TextBlock Text="Port" Margin="0,0,0,5" />
-            <TextBox x:Name="PortTextBox" PlaceholderText="Port" Width="100" TextChanged="PortTextBoxTextChanged" />
+
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="32">
+            <TextBlock Text="Katastr Nemovitostí" Style="{ThemeResource DisplayTextBlockStyle}" HorizontalAlignment="Center" />
+            
+            <Grid ColumnSpacing="24" RowSpacing="24" HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Button Content="Parcela" Click="GoParcela" Style="{ThemeResource AccentButtonStyle}" Width="200" Height="100" FontSize="20" Grid.Row="0" Grid.Column="0"/>
+                <Button Content="List Vlastnictví" Click="GoLv" Style="{ThemeResource AccentButtonStyle}" Width="200" Height="100" FontSize="20" Grid.Row="0" Grid.Column="1"/>
+                <Button Content="Správní Řízení" Click="GoSpravniRizeni" Style="{ThemeResource AccentButtonStyle}" Width="200" Height="100" FontSize="20" Grid.Row="1" Grid.Column="0"/>
+                <Button Content="CRUD" Click="GoCrud" Style="{ThemeResource AccentButtonStyle}" Width="200" Height="100" FontSize="20" Grid.Row="1" Grid.Column="1"/>
+            </Grid>
         </StackPanel>
-        <InfoBar x:Name="HealthInfoBar" IsOpen="False" VerticalAlignment="Bottom" Margin="20" />
+
+        <InfoBar x:Name="HealthInfoBar" Grid.Row="2" IsOpen="False" VerticalAlignment="Bottom" Margin="24" />
     </Grid>
 </Page>

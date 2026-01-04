@@ -1,4 +1,4 @@
-﻿﻿using System.Collections.Generic;
+﻿﻿﻿using System.Collections.Generic;
 using App2;
 using App2.Types;
 using Microsoft.UI.Xaml;
@@ -52,21 +52,17 @@ public sealed partial class UcastCrud : CrudPageBase
 
     private async void LoadData()
     {
-        var data = await LoadDataAsync<UcastData>("/ucast");
+        var data = await LoadDataAsync<UcastData>("/ucast", AppJsonContext.Default.UcastDataList);
         if (data != null)
         {
             Data = data;
         }
     }
 
-    private void GoBack(object sender, RoutedEventArgs e)
-    {
-        Frame.Navigate(typeof(ParcelaSearch), null, new SuppressNavigationTransitionInfo());
-    }
 
     private async void CreateButtonClick(object sender, RoutedEventArgs e)
     {
-        if (await CreateItemAsync("/ucast", NewItem))
+        if (await CreateItemAsync("/ucast", NewItem, AppJsonContext.Default.UcastData))
         {
             NewItem = new UcastData();
             LoadData();

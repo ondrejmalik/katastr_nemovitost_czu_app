@@ -45,7 +45,7 @@ public sealed partial class ParcelaDisplay
             try
             {
                 var response = await client.GetStringAsync(url);
-                var data = JsonSerializer.Deserialize<LVData>(response);
+                var data = JsonSerializer.Deserialize(response, AppJsonContext.Default.LVData);
 
 
                 DispatcherQueue.TryEnqueue(() =>
