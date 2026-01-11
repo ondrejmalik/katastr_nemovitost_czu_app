@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<crud:CrudPageBase
+    x:Class="KNApp.Pages.Crud.OkresCrud"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:types="using:KNApp.Types"
+    xmlns:crud="using:KNApp.Pages.Crud"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    PageInfoBar="{x:Bind MessageInfoBar}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <ScrollViewer Grid.Row="0">
+            <StackPanel Margin="24" Spacing="24">
+                <TextBlock Text="Okresy" Style="{ThemeResource TitleTextBlockStyle}" />
+                
+                <!-- New Item -->
+                <StackPanel Spacing="12">
+                    <TextBlock Text="Nový okres" Style="{ThemeResource SubtitleTextBlockStyle}" />
+                    <Border CornerRadius="8" BorderThickness="1" 
+                            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" 
+                            Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
+                            Padding="16">
+                        <Grid ColumnSpacing="12" RowSpacing="12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            
+                            <TextBlock Text="Kraj ID:" Style="{ThemeResource BodyStrongTextBlockStyle}" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0"/>
+                            <TextBox Text="{x:Bind NewItem.KrajId, Mode=TwoWay}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch"/>
+                            
+                            <TextBlock Text="Název:" Style="{ThemeResource BodyStrongTextBlockStyle}" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0"/>
+                            <TextBox Text="{x:Bind NewItem.Nazev, Mode=TwoWay}" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch"/>
+                            
+                            <Button Content="Create" Click="CreateButtonClick" Style="{ThemeResource AccentButtonStyle}" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right"/>
+                        </Grid>
+                    </Border>
+                </StackPanel>
+                
+                <!-- List -->
+                <StackPanel Spacing="12">
+                    <TextBlock Text="Seznam okresů" Style="{ThemeResource SubtitleTextBlockStyle}" />
+                    <ItemsControl ItemsSource="{x:Bind Data, Mode=OneWay}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate x:DataType="types:OkresData">
+                                <Border CornerRadius="8" BorderThickness="1" 
+                                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" 
+                                        Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
+                                        Padding="16" Margin="0,0,0,12">
+                                    <Grid ColumnSpacing="12" RowSpacing="12">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <TextBlock Text="ID:" Style="{ThemeResource BodyStrongTextBlockStyle}" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0"/>
+                                        <TextBlock Text="{x:Bind Id}" Style="{ThemeResource BodyTextBlockStyle}" VerticalAlignment="Center" Grid.Row="0" Grid.Column="1"/>
+
+                                        <TextBlock Text="Kraj ID:" Style="{ThemeResource BodyStrongTextBlockStyle}" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0"/>
+                                        <TextBox Text="{x:Bind KrajId, Mode=TwoWay}" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch"/>
+                                        
+                                        <TextBlock Text="Název:" Style="{ThemeResource BodyStrongTextBlockStyle}" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0"/>
+                                        <TextBox Text="{x:Bind Nazev, Mode=TwoWay}" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch"/>
+
+                                        <StackPanel Orientation="Horizontal" Spacing="8" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right">
+                                            <Button Content="Update" Click="UpdateButtonClick" Tag="{x:Bind}" Style="{ThemeResource AccentButtonStyle}"/>
+                                            <Button Content="Delete" Click="DeleteButtonClick" Tag="{x:Bind}"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+
+
+
+        <InfoBar x:Name="MessageInfoBar" Grid.Row="0" Grid.RowSpan="2" IsOpen="False" VerticalAlignment="Bottom" Margin="24" />
+    </Grid>
+</crud:CrudPageBase>
+
